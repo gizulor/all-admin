@@ -1,0 +1,44 @@
+@use "../setup";
+
+/* Forms - disabled elements
+   ========================================================================== */
+
+/**
+ * Make sure disabled elements really are disabled and styled appropriately.
+ *
+ * 1. Re-set default cursor for disabled elements.
+ */
+
+[disabled],
+[disabled] option,
+[disabled] optgroup,
+[inert],
+.txp-button.disabled,
+.navlink-disabled,
+.ui-checkboxradio-disabled {
+    border: 1px solid var(--clr-brdr) !important;
+    opacity: 0.33 !important;
+    background-color: var(--clr-bkgd-form-disabled) !important;
+    box-shadow: none !important;
+    cursor: default !important; /* 1 */
+}
+
+@include setup.dark-mode {
+    [disabled],
+    [disabled] option,
+    [disabled] optgroup,
+    [inert],
+    .txp-button.disabled,
+    .navlink-disabled,
+    .ui-checkboxradio-disabled {
+        opacity: 0.25 !important;
+
+        .ui-icon {
+            filter: invert(100%) !important;
+        }
+
+        .ui-icon-background {
+            background-color: var(--clr-bkgd-form-disabled) !important;
+        }
+    }
+}

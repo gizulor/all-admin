@@ -1,0 +1,152 @@
+@use "../setup";
+
+/* Lists
+   ========================================================================== */
+
+/**
+ * Address paddings set differently.
+ */
+
+menu,
+ol,
+ul {
+    padding-inline-start: 2em;
+}
+
+/**
+ * Remove margins from nested lists.
+ */
+
+li {
+    > ul,
+    > ol {
+        margin: 0;
+    }
+}
+
+/**
+ * CSS Lists and Counters Module Level 3 list marker styling.
+ */
+
+li::marker {
+    color: var(--text-heading);
+}
+
+/**
+ * Address margins set differently.
+ */
+
+dd {
+    margin-inline-start: 2em;
+}
+
+/**
+ * Have a list with no bullets/numerals.
+ *
+ * Example HTML:
+ *
+ * <ul class="plain-list">
+ * <ol class="plain-list">
+ */
+
+.plain-list {
+    padding: 0;
+    list-style: none;
+}
+
+/**
+ * Switcher lists, to swap between different page templates/form templates/etc.
+ *
+ * Example HTML:
+ *
+ * <ul class="switcher-list">
+ *     <li class="active"></li>
+ *     <li><a></a></li>
+ *     <li><a></a></li>
+ * </ul>
+ */
+
+.switcher-list {
+    //margin: 0 -1em;
+    padding: 0;
+    list-style: none;
+
+    li {
+        position: relative;
+        border-top: 1px solid var(--clr-brdr-lite);
+        border-bottom: 1px solid transparent;
+
+        &:nth-child(odd) {
+            background: var(--clr-bkgd);
+        }
+
+        &:first-child {
+            border-top: 0;
+        }
+
+        &.active,
+        &.ui-tabs-active {
+          a {
+           font-weight: 700;
+          }
+            //background: var(--clr-hilite-box);
+        }
+
+        &.selected {
+            background: var(--clr-selected);
+        }
+    }
+
+    a {
+        display: block;
+        padding: .5em;
+        padding-inline-start: 0;
+        padding-inline-end: 2.75em;
+        overflow: hidden;
+        font-weight: 400;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+}
+
+@include setup.dark-mode {
+    .switcher-list li {
+        border-top-color: var(--clr-brdr-x-lite);
+    }
+}
+
+/**
+ * Multi-edit checkboxes within switcher lists.
+ */
+
+.switcher-action {
+    position: absolute;
+    z-index: 2;
+    top: 0.3846154em; // 5px / 13px
+    left: 0;
+
+    + a {
+        padding-inline: 2.5em 1em;
+    }
+}
+
+[dir="rtl"] .switcher-action {
+    right: 0;
+    left: auto;
+}
+
+/**
+ * 'Destroy' buttons within switcher lists.
+ */
+
+.switcher-list .destroy {
+    position: absolute;
+    z-index: 2;
+    top: 0.3076923em; // 4px / 13px
+    right: 1em;
+}
+
+[dir="rtl"] .switcher-list .destroy {
+    right: auto;
+    left: 1em;
+}

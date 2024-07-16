@@ -1,0 +1,248 @@
+@use "../setup";
+
+/* Twisties
+   ========================================================================== */
+
+/**
+ * Collapsible and non-collapsible summary/details boxes.
+ *
+ * Example HTML:
+ *
+ * <details class="txp-details">
+ *     <summary="txp-summary">Heading (lever)</summary>
+ *     <div>
+ *         Content
+ *     </div>
+ * </details>
+ *
+ * <section class="txp-details">
+ *     <h3 class="txp-summary expanded">
+ *         <a>Heading (lever)</a>
+ *     </h3>
+ *     <div class="toggle">
+ *         Content
+ *     </div>
+ * </section>
+ *
+ * <section class="txp-details">
+ *     <h3>Heading</h3>
+ *     <div>
+ *         Content
+ *     </div>
+ * </section>
+ */
+
+/**
+ * 1. Add the correct display in Firefox.
+ */
+
+details {
+    display: block; /* 1 */
+}
+
+/**
+ * 1. Add the correct display in all browsers.
+ */
+
+summary {
+    display: list-item; /* 1 */
+    cursor: pointer;
+
+    &:focus {
+        outline: 1px solid var(--clr-focus);
+    }
+}
+
+.txp-details {
+    margin: var(--header-height) 0;
+
+//     @if not setup.$flat-theme {
+//         border-right: 1px solid var(--clr-brdr-x-lite);
+//         border-left: 1px solid var(--clr-brdr-x-lite);
+//
+//         > div {
+//             border-bottom: 1px solid var(--clr-brdr-x-lite);
+//         }
+//     } @else {
+//         border-right: 1px solid var(--clr-brdr);
+//         border-left: 1px solid var(--clr-brdr);
+//
+//         > div {
+//             border-bottom: 1px solid var(--clr-brdr);
+//         }
+//     }
+
+    clear: both;
+    //background: var(--clr-bkgd-box);
+}
+
+#txp-dates-group {
+   margin-top: 0;
+}
+@include setup.dark-mode {
+    .txp-details {
+        background: var(--clr-bkgd);
+    }
+}
+
+/**
+ * Styling for summary headings.
+ */
+
+.txp-summary,
+.txp-details > h3 {
+   // @include setup.gradient-linear(var(--clr-grad-from), var(--clr-grad-to));
+
+    position: relative;
+    height: 2em; // 26px / 13px
+    margin: 0;
+    border-bottom: 2px solid var(--clr-text);
+
+    // @if not setup.$flat-theme {
+    //     border-top: 1px solid var(--clr-brdr-lite);
+    //     border-bottom: 1px solid var(--clr-brdr-dark);
+    // } @else {
+    //     border-top: 1px solid var(--clr-brdr);
+    //     border-bottom: 1px solid var(--clr-brdr);
+    // }
+
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 2; // 26px / 13px
+}
+
+@if not setup.$flat-theme {
+    @include setup.dark-mode {
+        .txp-summary,
+        .txp-details > h3 {
+            border-bottom-color: var(--clr-brdr-x-lite);
+        }
+    }
+}
+
+/**
+ * Padding for non-collapsible summary headings.
+ *
+ * For collapsible summary headings the padding is done via the `a` tag.
+ */
+
+.txp-details > h3:not(.txp-summary) {
+    //padding: 0 1em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/**
+ * Additonal styling for lever summary headings.
+ */
+
+summary.txp-summary {
+    padding: 0 1em;
+    color: var(--clr-text-promoted);
+}
+
+h3.txp-summary a {
+    display: block;
+    //padding: 0 1em;
+    padding-inline-end: 2em;
+    overflow: hidden;
+    color: var(--clr-text-promoted);
+    cursor: pointer;
+    &:hover {
+        color: var(--clr-text-promoted);
+        text-decoration: none;
+    }
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    &::after {
+      //background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M1 8a7 7 0 1 1 14 0A7 7 0 0 1 1 8zm12-1H9V3H7v4H3v2h4v4h2V9h4V7z'/%3E%3C/svg%3E");;
+       width: 1em;
+       height: 1em;
+         //@include setup.hide-text;
+         content: '+';
+         display: block;
+         position: absolute;
+        // z-index: 10;
+         top: -0.25em;
+         right: 0;
+         //width: 1ch;
+        // height: 1em;
+        // border: solid transparent;
+        // border-width: 0.25em 0 0.25em 0.25em;
+        // border-left-color: var(--clr-text);
+        // opacity: 0.6;
+        // font-size: 16px;
+
+    }
+
+    &:hover::after {
+        opacity: 1;
+    }
+}
+
+[dir="rtl"] h3.txp-summary a::after {
+    right: auto;
+    left: 0;
+}
+
+/**
+ * Additonal styling for lever summary headings - expanded state.
+ */
+
+h3.txp-summary.expanded a::after {
+ content: '-';
+ transform: scale(1.5);
+   //top: 0;
+   right: -.25em;
+   // content: "\2191";
+    // top: 0.6875em; // 11px / 16px
+    // right: 0.5625em; // 9px / 16px
+    // border: solid transparent;
+    // border-width: 0.25em 0.25em 0;
+    // border-top-color: var(--clr-text);
+}
+
+[dir="rtl"] h3.txp-summary.expanded a::after {
+    right: auto;
+    left: 0.5625em; // 9px / 16px
+}
+
+/**
+ * Pad left and right of inner details content container.
+ */
+
+.toggle,
+.txp-details > div {
+    //padding: 0 1em;
+}
+
+/**
+ * Tables within summary/details boxes.
+ */
+
+.txp-details .txp-listtables {
+    margin: 1em 0;
+}
+
+/**
+ * Inline date and time form fields within summary/details boxes.
+ */
+
+.txp-details .txp-form-field {
+    &.date,
+    &.time {
+        display: inline-block;
+        margin-bottom: 0;
+    }
+
+    &.date {
+        margin-inline-end: 1em;
+    }
+
+    &.posted-now {
+        margin-bottom: 0;
+    }
+}

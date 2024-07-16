@@ -1,0 +1,146 @@
+@use "../setup";
+
+/* Forms - input type checkbox/radio
+   ========================================================================== */
+
+
+[type="checkbox"],
+[type="radio"] {
+   accent-color: var(--clr-text);
+   margin-left: .5em;
+   &:last-child {
+   margin-left: 0;
+   }
+   //appearance: none;
+}
+/**
+ * 1. Remove any excess padding.
+ * 2. Correct margins for inline checkbox/radio labels.
+ */
+
+// [type="checkbox"]:not(.ui-checkboxradio),
+// [type="radio"]:not(.ui-checkboxradio) {
+//     position: relative;
+//     bottom: -2px;
+//     box-sizing: border-box;
+//     width: 16px;
+//     height: 16px;
+//     padding: 0; /* 1 */
+//     border: 1px solid var(--clr-brdr-x-dark);
+//     background: var(--clr-bkgd-form);
+//     appearance: none;
+//
+//     + label:not(.ui-controlgroup-item) {
+//         margin: 0; /* 2 */
+//         margin-inline-end: 0.5em;
+//
+//         &:last-of-type {
+//             margin-inline-end: 0; /* 2 */
+//         }
+//     }
+//
+//     &:hover {
+//         filter: brightness(1.05);
+//         cursor: pointer;
+//     }
+//
+//     &:active {
+//         filter: brightness(0.95);
+//     }
+//
+//     &:focus {
+//         border-color: var(--clr-focus);
+//         outline: 0;
+//         box-shadow: 0 0 0 1px var(--clr-focus-a50);
+//     }
+//
+//     &:not([disabled]) + label:hover {
+//         cursor: pointer;
+//     }
+// }
+//
+// @include setup.dark-mode {
+//     [type="checkbox"]:not(.ui-checkboxradio),
+//     [type="radio"]:not(.ui-checkboxradio) {
+//         &:hover {
+//             border-color: var(--clr-brdr-x-lite);
+//         }
+//     }
+// }
+//
+// [type="checkbox"]:not(.ui-checkboxradio) {
+//     border-radius: 0.2em;
+//
+//     &:checked {
+//         border: 0;
+//         background: var(--clr-text-demoted)
+//             url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23fff' d='M13 2.5l-7 7-2-2-2 2 4 4L15 4.5z'/%3E%3C/svg%3E");
+//
+//         &:hover,
+//         &:active {
+//             background-color: var(--clr-text);
+//         }
+//
+//         &:focus {
+//             background-color: var(--clr-focus);
+//         }
+//     }
+//
+//     &[disabled]:checked {
+//         background: var(--clr-text-demoted)
+//             url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23fff' d='M13 2.5l-7 7-2-2-2 2 4 4L15 4.5z'/%3E%3C/svg%3E") !important;
+//     }
+// }
+//
+// @include setup.dark-mode {
+//     [type="checkbox"]:not(.ui-checkboxradio) {
+//         &:checked {
+//             background: var(--clr-text)
+//                 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23282d32' d='M13 2.5l-7 7-2-2-2 2 4 4L15 4.5z'/%3E%3C/svg%3E");
+//
+//             &:hover,
+//             &:active {
+//                 background-color: var(--clr-text-promoted);
+//             }
+//
+//             &:focus {
+//                 background-color: var(--clr-focus);
+//             }
+//         }
+//
+//         &[disabled]:checked {
+//             background: var(--clr-text)
+//                 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath fill='%23282d32' d='M13 2.5l-7 7-2-2-2 2 4 4L15 4.5z'/%3E%3C/svg%3E") !important;
+//         }
+//     }
+// }
+//
+// [type="radio"]:not(.ui-checkboxradio) {
+//     border-radius: 100%;
+//
+//     &:checked {
+//         border: 5px solid var(--clr-text-demoted);
+//
+//         &:hover,
+//         &:active {
+//             border-color: var(--clr-text);
+//         }
+//
+//         &:focus {
+//             border-color: var(--clr-focus);
+//         }
+//     }
+// }
+//
+// @include setup.dark-mode {
+//     [type="radio"]:not(.ui-checkboxradio):checked {
+//         &:hover,
+//         &:active {
+//             border-color: var(--clr-text-promoted);
+//         }
+//
+//         &:focus {
+//             border-color: var(--clr-focus);
+//         }
+//     }
+// }

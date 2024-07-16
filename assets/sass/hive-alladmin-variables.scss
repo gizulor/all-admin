@@ -1,0 +1,137 @@
+@use "setup";
+
+/* CSS variables
+   ========================================================================== */
+
+/* stylelint-disable declaration-colon-space-after */
+
+:root {
+    // font families
+    --font-body: system-ui, -apple-system, "Segoe UI", Helvetica, Arial,
+        sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    --font-code: Menlo, Consolas, Monaco, monospace;
+
+    --yellow: hsl(48 ,100%, 50%);
+    // text colours
+    --clr-text: hsl(0 ,0%, 20%);
+    --clr-text-promoted: hsl(0 ,0%, 0%);
+    --clr-text-demoted: hsl(0 ,0%, 35%);
+    --clr-text-inversed: hsl(0 ,0%, 100%);
+    --clr-text-enforced-white: hsl(0 ,0%, 100%);
+    --clr-text-form: hsl(0 ,0%, 0%);
+    --clr-text-placeholder: hsl(0 ,0%, 60%);
+    --clr-text-btn: hsl(0 ,0%, 0%);
+    --clr-text-btn-hover: hsl(0 ,0%, 0%);
+    --clr-text-btn-active: hsl(0 ,0%, 0%);
+    // neutral colours
+    --clr-bkgd: hsl(0 ,0%, 97%);
+    --clr-bkgd-enforced-white: hsl(0 ,0%, 100%);
+    --clr-bkgd-box: hsl(0 ,0%, 94%);
+    --clr-bkgd-form: hsl(0 ,0%, 100%);
+    --clr-bkgd-form-disabled: hsl(0 ,0%, 89%);
+    --clr-grad-from: hsl(0 ,0%, 93%);
+    --clr-grad-to: hsl(0 ,0%, 87%);
+    // accent colours
+    --clr-accent-grad-from: hsl(48 ,100%, 63%);
+    --clr-accent-grad-to: hsl(48 ,100%, 48%);
+    --clr-accent-dark: hsl(48, 100%, 48%);
+    --clr-accent-bkgd: hsl(48 ,100%, 94%);
+    --clr-hilite-box: hsl(48 ,100%, 63%);
+    --clr-strong-hilite-box: hsl(48 ,100%, 63%);
+    // border colours
+    --clr-brdr: hsl(0 ,0%, 80%);
+    --clr-brdr-lite: hsl(0 ,0%, 82%);
+    --clr-brdr-x-lite: hsl(0 ,0%, 90%);
+    --clr-brdr-dark: hsl(0 ,0%, 75%);
+    --clr-brdr-x-dark: hsl(0 ,0%, 70%);
+    // interaction colours
+    --clr-a: var(--clr-text);
+    --clr-a-interact: var(--clr-text);
+    --clr-focus: hsl(0 ,0%, 35%);
+    --clr-focus-a50: hsl(0 ,0%, 35%/.5);
+    --clr-selecting: hsl(48 ,100%, 55%);
+    --clr-selected: hsl(48, 100%, 55%);
+    // button colours
+    --clr-btn-grad-from: hsl(0 ,0%, 100%);
+    --clr-btn-grad-to: hsl(0 ,0%, 100%);
+    --clr-btn-brdr: hsl(0 ,0%, 100%);
+    --clr-btn-primary-grad-from: hsl(48 ,100%, 70%);
+    --clr-btn-primary-grad-to: hsl(48 ,100%, 55%);
+    --clr-btn-primary-brdr: hsl(48 ,100%, 48%);
+    --clr-btn-selected-grad-from: hsl(216 ,100%, 95%);
+    --clr-btn-selected-grad-to: hsl(216 ,100%, 90%);
+    --clr-btn-selected-brdr: hsl(216 ,100%, 79%);
+    --clr-btn-caution-grad-from: hsl(4 ,43%, 95%);
+    --clr-btn-caution-grad-to: hsl(4 ,43%, 91%);
+    // alert colours
+    --clr-success-text: var(--clr-bkgd);
+    --clr-success-bkgd: hsl(141, 25%, 40%);
+    --clr-success-brdr: hsl(141, 25%, 40%);
+    --clr-warning-text: var(--clr-text);
+    --clr-warning-bkgd: var(--yellow);
+    --clr-warning-brdr: var(--yellow);
+    --clr-error-text: var(--clr-bkgd);
+    --clr-error-text-a50: var(--clr-bkgd);;
+    --clr-error-bkgd: hsl(17, 48%, 43%);
+    --clr-error-brdr: var(--clr-error-bkgd);
+    --clr-info-text: var(--clr-text);
+    --clr-info-bkgd: hsl(212, 30%, 72%);
+    --clr-info-brdr: hsl(212, 30%, 72%)
+    // shadows
+    --standard-shadow: 0 0 0.5em hsl(0 ,0%, 0% / 0.2);
+    --inset-lolite: inset 0 0.2em 0.25em hsl(0 ,0%, 0% / 0.15);
+
+
+    // special dimensions
+    --header-height:3em;
+}
+
+@include setup.dark-mode {
+    // text colours
+    --clr-text: hsl(0, 0%, 100%);
+    --clr-text-promoted: hsl(0 ,0%, 100%);
+    --clr-text-demoted: hsl(210 ,14%, 70%);
+    --clr-text-inversed: hsl(210 ,11%, 24%);
+    --clr-text-form: hsl(0 ,0%, 100%);
+    --clr-text-placeholder: hsl(210 ,6%, 48%);
+
+    // neutral colours
+    --clr-bkgd: hsl(210 ,11%, 23%);
+    --clr-bkgd-box: hsl(210 ,11%, 20%);
+    --clr-bkgd-form: hsl(210 ,11%, 17%);
+    --clr-bkgd-form-disabled: hsl(210 ,11%, 17%);
+    --clr-grad-from: hsl(210 ,7%, 34%);
+    --clr-grad-to: hsl(210 ,9%, 28%);
+    // border colours
+    --clr-brdr: hsl(210 ,7%, 50%);
+    --clr-brdr-lite: hsl(210 ,7%, 40%);
+    --clr-brdr-x-lite: hsl(210 ,7%, 30%);
+    --clr-brdr-dark: hsl(210 ,7%, 20%);
+    --clr-brdr-x-dark: var(--clr-bkgd);
+    // interaction colours
+    --clr-a: var(--clr-text);
+    --clr-a-interact: var(--clr-text);
+    --clr-focus: hsla(40 ,70%, 62%,.5);
+    --clr-focus-a50: hsl(312 ,100%, 50% / 0.5);
+    --clr-selecting: hsl(48 ,60%, 55%);
+    --clr-selected:hsl(48 ,60%, 15%);
+    // button colours
+    --clr-btn-caution-grad-from: hsl(348 ,34%, 24%);
+    --clr-btn-caution-grad-to: hsl(348 ,34%, 21%);
+    // alert colours
+    --clr-success-text: hsl(0 ,0%, 100%);
+    --clr-success-bkgd:  hsl(120 ,60%, 34%);
+    --clr-success-brdr: hsl(100 ,30%, 50%);
+    --clr-warning-text:hsl(0 ,0%, 100%);
+    --clr-warning-bkgd: hsl(5, 50%, 45%);
+    --clr-warning-brdr: hsl(40 ,70%, 62%);
+    --clr-error-text: hsl(337 ,100%, 60%);
+    --clr-error-text-a50: hsla(337 ,100%, 60%..5);
+    --clr-error-bkgd: hsl(348 ,34%, 21%);
+    --clr-error-brdr: hsl(337 ,100%, 60% );
+    --clr-info-text: hsl(207 ,70%, 63%);
+    --clr-info-bkgd: hsl(207 ,68%, 17%);
+    --clr-info-brdr: hsl(207 ,70%, 63%);
+    // shadows
+    --standard-shadow: 0 0 0.5em hsl(0 ,0%, 0% / 0.75);
+}

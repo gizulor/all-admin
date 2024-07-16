@@ -1,0 +1,180 @@
+@use "../setup";
+
+/* Page-Image
+ ========================================================================== */
+
+
+#page-image {
+
+  thead {
+    .txp-list-col-id{
+      min-width: 16ch;
+      a {
+        display: inline-block;
+      }
+      &:before {
+       // position: absolute;
+        content: 'Sort images by: ';
+        //opacity: .5;
+      }
+    }
+    // position: absolute;
+    // z-index: 1;
+    //background-color: var(--clr-text-enforced-white);
+    tr {
+      display: flex;
+      // max-width: 120px;
+      // grid-template-columns: 12ch 8ch 1fr;
+      // grid-template-areas:
+      // 'check id cat'
+      // '. image image'
+      // '. name name'
+      // '. author author'
+      // '. date date'
+      // '. build build';
+      // grid-gap: .5em 0;
+    }
+    th a:after {
+      right: -0.15em;
+    }
+    // th {
+    //   border: 0;
+    //   padding: 0;
+    //   a {
+    //     display: inline-block;
+    //     padding-right: 2em;
+    //     font-weight: initial;
+    //     opacity: 0.5;
+    //    // margin: 0;
+    //     //padding: 0 !important;
+    //     &:hover {
+    //       opacity: 1;
+    //     }
+    //   }
+    // }
+
+    td {
+      padding: 0;
+    }
+    .txp-list-col-multi-edit {
+      width: auto;
+      font-weight: inherit;
+      //min-width:
+        &:after {
+          content: 'Select all';
+          opacity: .5;
+          margin-left: .5em;
+        }
+    }
+    .txp-list-col-thumbnail {
+      margin: 0;
+    }
+
+    .category {
+      margin-left: 0;
+    }
+    .txp-list-col-tag-build {
+      display: none;
+    }
+  }
+
+  .txp-list tbody {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    //grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2em 4em;
+    margin-top: 4em;
+
+    .txp-list-col-thumbnail {
+      width: 200px;
+    }
+
+    tr {
+      display: grid;
+
+      grid-template-areas:
+      'check id cat'
+      'image image image'
+      'name name name'
+      'author author author'
+      'date date date'
+      'build build build';
+
+      grid-template-columns: 1.5em max-content 1fr;
+      //grid-template-rows: 2em 120px auto auto auto;
+      //display: flex;
+      //flex-direction: column;
+      border: 0;
+      margin-bottom: var(--header-height);
+
+     >*  {
+        padding: 0;
+        &:not(.txp-list-col-thumbnail) {
+        opacity: .5;
+
+        }
+
+      }
+
+      //opacity: .5;
+
+    }
+
+  }
+
+  .txp-list-col-multi-edit {
+    grid-area: check;
+  }
+
+
+  .txp-list-col-name {
+    grid-area: name;
+    word-break: break-word;
+  }
+
+  .name {
+    grid-area: author;
+  }
+
+  .date {
+    grid-area: date;
+  }
+
+  .txp-list-col-tag-build {
+    grid-area: build;
+  }
+
+  .category {
+    grid-area: cat;
+   margin-left: 1em;
+    //margin-top: .5em;
+    opacity: 1 !important;
+  }
+
+
+  .txp-list-col-thumbnail {
+    grid-area: image;
+    opacity: 1;
+
+    img {
+      height: 120px;
+      width: max-content;
+      object-fit: contain;
+  object-position: top left;
+      border: 0;
+      background: transparent;
+    }
+
+    margin: .5em 0;
+  }
+.txp-list-col-name,
+.name,
+.date,
+.txp-list-col-tag-build,
+.txp-list-col-thumbnail {
+  font-size: 12px;
+}
+  //@media screen and (min-width:1440px) {
+
+}

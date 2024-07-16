@@ -1,0 +1,282 @@
+@use "../setup";
+@use "sass:math";
+
+/* Typography
+   ========================================================================== */
+
+/**
+ * Establish baseline.
+ *
+ * 1. Prevent adjustments of font size after orientation changes in iOS.
+ */
+
+html {
+    font-size: setup.$base-font-size;
+    line-height: setup.$base-line-height;
+    text-size-adjust: 100%; /* 1 */
+}
+
+/**
+ * Global font and colour.
+ */
+
+body {
+    font-family: var(--font-body);
+}
+
+/**
+ * Harmonize size, style and vertical margin of headings.
+ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    clear: both;
+    color: var(--clr-text-promoted);
+}
+
+/**
+ * `h1` headings.
+ *
+ * Example HTML:
+ *
+ * <h1>Heading</h1>
+ * <h1>
+ *     Heading
+ *     <a class="pophelp"><span class="ui-icon ui-icon-help">Help</span></a>
+ * </h1>
+ */
+
+h1 {
+    margin: 0.2692308em 0 0.5em; // 7px / 26px, 13px / 26px
+    font-size: 2rem; // 26px / 13px
+    line-height: 1.2307692; // 32px / 26px
+
+    .pophelp {
+        font-size: 1rem;
+    }
+}
+
+/**
+ * `h2` headings.
+ *
+ * Example HTML:
+ *
+ * <h2>Heading</h2>
+ * <h2>
+ *     Heading
+ *     <a class="pophelp"><span class="ui-icon ui-icon-help">Help</span></a>
+ * </h2>
+ */
+
+h2 {
+    margin: 0.5em 0 0.7222222em; // 9px / 18px + 13px / 18px
+    font-size: 1.3846154rem; // 18px / 13px
+    line-height: 1.3333333; // 24px / 18px
+
+    .pophelp {
+        font-size: 1rem;
+    }
+}
+
+/**
+ * `h3` headings.
+ */
+
+h3 {
+    margin: 0.8666667em 0; // 13px / 15px
+    font-size: 1.1538462rem; // 15px / 13px
+    line-height: 1.4; // 21px / 15px
+}
+
+/**
+ * Normalize `h4`, `h5` and `h6` headings (these are effectively unused).
+ */
+
+h4,
+h5,
+h6 {
+    margin: 1em 0;
+    font-size: 1rem;
+}
+
+/**
+ * Ensure consistent font weight in all browsers.
+ */
+
+b,
+strong {
+    font-weight: 700;
+}
+
+/**
+ * Add vertical margin to addresses.
+ */
+
+address {
+    margin: 1em 0;
+}
+
+/**
+ * Additional styling for blockquotes.
+ */
+
+blockquote {
+    margin: 1em 0;
+    padding: 0;
+    padding-inline-start: 1em;
+    border-inline-start: 3px solid var(--clr-brdr);
+}
+
+/**
+ * 1. Remove the bottom border in Chrome 57+.
+ * 2. Add the correct text decoration.
+ */
+
+abbr[title] {
+    border-bottom: 0; /* 1 */
+    text-decoration: underline dotted; /* 2 */
+}
+
+/**
+ * Consistent styling for `mark` and `var` tags.
+ */
+
+mark,
+var {
+    padding: 1px 0.2307692em; // 3px / 13px
+
+    @if setup.$border-radius > 0 {
+        border-radius: math.div(setup.$border-radius, 2);
+    }
+
+    background: var(--clr-selected);
+    color: var(--clr-text);
+}
+
+/**
+ * Harmonize size and style of computer text.
+ */
+
+pre,
+code,
+kbd,
+samp,
+.code {
+    direction: ltr;
+    font-family: var(--font-code);
+    text-align: left;
+    unicode-bidi: isolate;
+}
+
+code,
+kbd,
+samp {
+    padding: 1px 0.2307692em; // 3px / 13px
+    border: 1px solid var(--clr-brdr-x-lite);
+
+    @if setup.$border-radius > 0 {
+        border-radius: math.div(setup.$border-radius, 2);
+    }
+
+    background: var(--clr-bkgd-box);
+}
+
+/**
+ * Additional stylng for preformatted text/code.
+ *
+ * 1. Contain overflow in all browsers.
+ * 2. Don't wrap long words.
+ * 3. Set tab size to 4 spaces.
+ */
+
+pre {
+    margin: 1em 0;
+    padding: 1em; // 13px
+    overflow-x: auto; /* 1 */
+    border: 1px solid var(--clr-brdr-x-lite);
+
+    @if setup.$border-radius > 0 {
+        border-radius: math.div(setup.$border-radius, 2);
+    }
+
+    background: var(--clr-bkgd-box);
+    word-wrap: normal; /* 2 */
+    tab-size: 4; /* 3 */
+}
+
+/**
+ * Override `code` styling for code display within pre-formatted text areas and
+ * form text areas.
+ */
+
+pre code,
+.code code,
+code.body,
+code.excerpt {
+    padding: 0;
+    border: 0;
+
+    @if setup.$border-radius > 0 {
+        border-radius: 0;
+    }
+
+    background-color: transparent;
+    hyphens: none;
+    text-align: left;
+    word-wrap: normal;
+    word-break: normal;
+    word-spacing: normal;
+    white-space: pre;
+}
+
+/**
+ * Prevent `sub` and `sup` elements from affecting the line height in all browsers.
+ */
+
+sub,
+// override Textile class
+sup.footnote,
+sup {
+    position: relative;
+    font-size: 0.75em;
+    line-height: 0;
+    vertical-align: baseline;
+}
+
+sup {
+    top: -0.5em;
+}
+
+sub {
+    bottom: -0.3333333em;
+}
+
+/**
+ * Harmonize size and style of small text.
+ */
+
+small,
+figcaption,
+tfoot,
+.footnote,
+.txp-form-field-instructions,
+.txp-footer {
+    font-size: setup.$small-font-size;
+    line-height: setup.$small-line-height;
+}
+
+figcaption,
+tfoot,
+.footnote,
+.txp-form-field-instructions {
+    color: var(--clr-text-demoted);
+}
+
+figcaption {
+    margin-top: 0.5em;
+    font-style: italic;
+}

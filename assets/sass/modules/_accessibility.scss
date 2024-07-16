@@ -1,0 +1,38 @@
+@use "../setup";
+
+@media screen and (prefers-reduced-motion: reduce), (update: slow) {
+    .messageflash,
+    span.spinner {
+        animation: none;
+    }
+
+    .ui-progressbar-value {
+        animation: none;
+        background-image: none;
+    }
+
+    progress::-webkit-progress-value {
+        animation: none;
+        background-image: none;
+    }
+
+    progress:indeterminate::-webkit-progress-bar {
+        animation: none;
+        background-image: none;
+    }
+
+    progress::-moz-progress-bar {
+        animation: none;
+        background-image: none;
+    }
+
+    progress:indeterminate::-moz-progress-bar {
+        animation: none;
+        background-image: none;
+    }
+
+    progress::-ms-fill {
+        animation: none;
+        background-image: none;
+    }
+}

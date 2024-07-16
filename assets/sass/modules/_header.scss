@@ -1,0 +1,200 @@
+@use "../setup";
+
+/* Header
+   ========================================================================== */
+
+/**
+ * Header content area.
+ *
+ * Example HTML:
+ *
+ * <body>
+ *     <header class="txp-header">
+ *         Content
+ *     </header>
+ *     <main class="txp-body"></main>
+ *     <footer class="txp-footer"></footer>
+ * </body>
+ */
+
+.txp-header {
+    // @include setup.gradient-linear(
+    //     var(--clr-accent-grad-from),
+    //     var(--clr-accent-grad-to)
+    // );
+    background-color: var(--clr-bkgd-enforced-white);
+    display: flex;
+    align-items: center;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    right: 0;
+    left: 0;
+    height: var(--header-height);
+    padding: 0 4%;
+    // border-top: 1px solid var(--clr-accent-grad-to);
+    // border-bottom: 1px solid var(--clr-accent-dark);
+
+    @if not setup.$flat-theme {
+        box-shadow: 0 0.2em 0.25em hsl(0 0% 0% / 0.15);
+    }
+}
+
+/**
+ * Hide header content area on login panels.
+ */
+
+.login {
+    .txp-header {
+        display: none;
+    }
+}
+
+/**
+ * Textpattern logo.
+ *
+ * Example HTML:
+ *
+ * <header class="txp-header">
+ *     <h1>
+ *         <a><span>My site</span></a>
+ *     </h1>
+ */
+
+.txp-header h1 {
+    flex: none;
+    width: 8.125em; // 130px / 16px
+    height: 2em; // 32px / 16px
+    margin: 0.0625em 0 0; // 1px / 16px, 8px / 16px
+    margin-inline-end: 0.5em; // 8px / 16px
+    background: url("../img/sprite.svg") no-repeat;
+    background-size: 13em 2em; // 208px / 16px + 32px / 16px
+    font-size: 16px;
+
+    a {
+        display: block;
+        width: 8.125em;
+        height: 2em;
+    }
+
+    span {
+        @include setup.hide-text;
+
+        display: block;
+    }
+}
+
+/**
+ * 'View site' link.
+ *
+ * Example HTML:
+ *
+ * <p class="txp-view-site">
+ *     <a>
+ *         <span class="txp-view-site-name">My site</span>
+ *     </a>
+ * </p>
+ */
+
+.txp-view-site {
+    flex: 1;
+    margin: 0 1em;
+    margin-top: .33em;
+   //padding: 0 1px;
+    overflow: hidden;
+    //line-height: 2.6923077; // 35px / 13px
+    white-space: nowrap;
+
+    span {
+        display: block;
+        overflow: hidden;
+       // color: var(--clr-text-btn);
+        text-overflow: ellipsis;
+    }
+
+    a {
+        color: var(--clr-text-btn);
+        font-weight: 700;
+    }
+}
+
+/**
+ * Switch between Dark Mode/Light Mode manually.
+ *
+ * Example HTML:
+ *
+ * <p class="txp-lightswitch">
+ *     <a id="lightswitch">
+ *         <span class="ui-icon ui-icon-lightbulb">Switch light/dark mode</span>
+ *     </a>
+ * </p>
+ */
+
+.txp-lightswitch {
+    flex: none;
+    margin: 0 0.75em; // 12px / 16px;
+    padding: 0;
+    overflow: inherit;
+    font-size: 16px;
+
+    a {
+        display: block;
+        //position: relative;
+        //top: 50%;
+        width: 1.5em;
+        height: 1.5em;
+        //transform: translateY(-50%);
+        border: 1px solid var(--clr-text);
+        border-radius: 0.75em;
+        background: hsl(0 0% 100% / 0.6);
+        text-align: center;
+
+        &:hover {
+            background: hsl(0 0% 100% / 0.8);
+        }
+
+        &:focus {
+            border-color: var(--clr-focus);
+            outline: 0;
+            box-shadow: 0 0 0 1px var(--clr-focus-a50);
+        }
+    }
+}
+
+@include setup.dark-mode {
+.txp-header {
+ background-color: var(--clr-bkgd-form);
+color: var(--clr-text-enforced-white);
+   a {
+      color: currentcolor;
+   }
+   > h1 {
+      filter: invert(100%);
+   }
+}    .txp-lightswitch a {
+        background: transparent;
+
+        &:hover {
+            background: hsl(0 0% 100% / 0.25);
+        }
+
+        .ui-icon {
+           // filter: none;
+        }
+    }
+}
+
+/**
+ * Positioning of logout button.
+ *
+ * Example HTML:
+ *
+ * <p class="txp-logout">
+ */
+
+.txp-logout {
+   margin: 0;
+    //position: relative;
+   // top: -0.4em;
+    //flex: none;
+}

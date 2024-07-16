@@ -1,0 +1,752 @@
+@use "../setup";
+
+/* ==========================================================================
+   Additional layout for devices < 768px
+   ========================================================================== */
+
+@media (max-width: setup.$break-large) {
+   /**
+     * Adjust right/left padding of body.
+     */
+
+   body {
+      padding: 4em 3em 0; // 52px + 39px
+      font-size: 14px;
+   }
+
+   table {
+      font-size: 12px;
+   }
+
+   .setup,
+   .login {
+      padding: 1em 3em 0; // 13px + 39px
+   }
+
+   #messagepane {
+      right: 3em;
+      left: 3em;
+   }
+
+   /**
+     * Grid column cell changes at 1st breakpoint downwards.
+     *
+     * Cells for 4 column layout become 2 column layout.
+     * Cells for 4 column span variations become 1 column layout.
+     */
+
+   .txp-layout-4col {
+      grid-column: span 6;
+   }
+
+   .txp-layout-4col-alt,
+   .txp-layout-4col-2span,
+   .txp-layout-4col-3span {
+      grid-column: span 12;
+   }
+
+   /**
+     * Adjust right/left padding of header area.
+     */
+
+   .txp-header {
+      padding: 0 3em; // 39px
+   }
+
+   /**
+     * Smaller version of Textpattern logo.
+     */
+
+   .txp-header h1 {
+      width: 1.75em; // 28px / 16px
+
+      a {
+         width: 1.75em; // 28px / 16px
+      }
+   }
+
+   /**
+     * 'View site' link.
+     *
+     * Example HTML:
+     *
+     * <p class="txp-view-site">
+     *     <a>
+     *         <span class="txp-view-site-name">My site</span>
+     *     </a>
+     * </p>
+     */
+
+   .txp-view-site {
+      margin: 0.0625em 0.375em 0; // 1px / 16px + 6px / 16px;
+      padding: 0;
+      overflow: inherit;
+      font-size: 16px;
+
+      a {
+         @include setup.hide-text;
+
+         display: block;
+         width: 2em;
+         height: 2em;
+         background: url("../img/sprite.svg") no-repeat -8em 0;
+         background-size: 13em 2em; // 208px / 16px + 32px / 16px
+      }
+   }
+
+   /**
+     * Search widget at top of lists.
+     */
+
+   .txp-search {
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      margin-top: 0;
+      float: none;
+   }
+
+   [dir="rtl"] .txp-search {
+      float: none;
+   }
+
+   /**
+     * Reposition search clearer.
+     */
+
+   .txp-search-clear {
+      flex: 1 0 auto;
+      width: 100%;
+      margin: 0 0 0.5em;
+      text-align: start;
+   }
+
+   /**
+     * Reset Form panel 'name' and 'type' fields to blocks.
+     */
+
+   #page-form .name,
+   #page-form .type {
+      display: block;
+      margin: 0 0 1em;
+   }
+
+   /**
+     * Bottom-affixed save button region.
+     */
+
+   .txp-save-zone {
+      display: flex;
+      position: fixed;
+      box-sizing: border-box;
+      display: flex;
+       align-items: center;
+
+      //flex-direction: row-reverse;
+      //align-items: flex-start;
+      //justify-content: space-between;
+      height: 4.5rem;
+      inset: auto 0 0;
+      margin: 0;
+      padding: 0.25em 3em;
+      border: 0;
+      border-top: 1px solid var(--clr-brdr-lite);
+
+      @if not setup.$flat-theme {
+         box-shadow: 0 -0.2em 0.25em hsl(0 0% 0% / 0.15);
+      }
+
+      .txp-save {
+         margin-right: 1em;
+      }
+      >* {
+       margin: 0;
+      }
+   }
+
+   .txp-save {
+      flex-direction: row-reverse;
+   }
+
+   .txp-save-export {
+      margin-inline-end: 1em;
+   }
+
+   #page-article,
+   #page-page,
+   #page-form,
+   #page-css {
+      padding-bottom: 4.5rem;
+
+      #messagepane {
+         // bottom: 4.5rem;
+      }
+   }
+
+   /**
+     * Restrict width of multiselect to avoid layout breakage.
+     */
+
+   select[size],
+   select[multiple] {
+      max-width: 22em; // 286px / 13px
+
+      option {
+         box-sizing: border-box;
+         width: 100%;
+         overflow: hidden;
+         text-overflow: ellipsis;
+         white-space: nowrap;
+      }
+   }
+
+   /**
+     * Reduce tab character length in code editor/text areas.
+     */
+
+   textarea,
+   pre {
+      tab-size: 2;
+   }
+
+
+
+
+
+
+
+
+
+}
+
+/* ==========================================================================
+   Additional layout for devices < 547px
+   ========================================================================== */
+
+@media (max-width: setup.$break-small) {
+   /**
+     * Prevent zoom upon form element focus.
+     */
+
+   html {
+      //font-size: 16px;
+      //font-size: 13px;
+   }
+
+   /**
+     * Adjust right/left padding of body.
+     */
+
+   body {
+      padding: 4em 1em 0; // 64px + 16px
+   }
+
+   .setup,
+   .login {
+      padding: 0 1em; // 16px
+   }
+
+   #messagepane {
+      right: 1em;
+      left: 1em;
+   }
+
+   .txp-login {
+      margin: 1em auto;
+      padding: 1px 0 0;
+
+      @if not setup.$flat-theme {
+         box-shadow: none;
+      }
+   }
+
+   /**
+     * Adjust right/left padding of header area.
+     */
+
+   .txp-header {
+      height: 2.625em; // 42px / 16px
+      padding: 0 1em; // 16px
+   }
+
+   /**
+     * Grid column cell changes at 2nd breakpoint downwards.
+     *
+     * Cells for 2 column layout become 1 column layout.
+     * Cells for 3 column layout become 1 column layout.
+     * Cells for 4 column layout become 1 column layout.
+     */
+
+   .txp-layout {
+      gap: 0; // Prevent content overflow.
+   }
+
+   .txp-layout-2col,
+   .txp-layout-3col,
+   .txp-layout-3col-2span,
+   .txp-layout-4col {
+      grid-column: span 12;
+   }
+
+   .txp-layout-cell-row {
+      display: block;
+   }
+
+   //    // Non-fixed header on mobile layout (because mobile nav menu couldn't scroll otherwise).
+   //
+   //    .txp-header {
+   //       position: absolute;
+   //    }
+
+   .txp-header h1,
+   .txp-view-site {
+      margin-top: 0.25em;
+   }
+
+   /**
+     * Show the navigation menu toggle button on mobile layout.
+     *
+     * Example HTML:
+     *
+     * <button class="txp-nav-toggle">
+     */
+
+   button.txp-nav-toggle {
+      @include setup.hide-text;
+
+      display: block;
+      width: 2em;
+      height: 2em;
+      margin: 0.25em 0.5em 0;
+      padding: 0;
+      //float: left;
+      border: 0;
+
+      @if setup.$border-radius >0 {
+         border-radius: 0;
+      }
+
+      background: transparent url("../img/sprite.svg") -10em 0;
+      background-size: 13em 2em; // 208px / 16px + 32px / 16px
+
+      &:focus {
+         outline: thin solid var(--clr-focus);
+      }
+
+
+      &:not(.collapsed) {
+         // background-color: hsl(0 0% 100% / 0.4);
+      }
+   }
+
+   @include setup.dark-mode {
+
+      .txp-view-site a,
+      button.txp-nav-toggle {
+         filter: invert(100%);
+
+      }
+
+   }
+
+   // [dir="rtl"] button.txp-nav-toggle {
+   //    float: right;
+   // }
+
+   /**
+     * Hide the navigation menu by default on mobile layout.
+     */
+
+   .txp-nav .data-dropdown {
+      display: none;
+   }
+
+   /**
+     * Show the navigation menu when toggled on mobile layout.
+     */
+
+   .txp-nav.in .data-dropdown {
+      //display: block;
+      position: absolute;
+      top: 2.75em;
+      right: 0;
+      left: 0;
+      //   background: var(--clr-bkgd-enforced-white);
+      display: grid;
+      //display: block;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 2em;
+      padding-bottom: 2em;
+      min-height: calc(100vh - var(--header-height));
+      //background: var(--clr-accent-grad-from);
+      background: var(--clr-bkgd-box);
+
+      @if not setup.$flat-theme {
+         box-shadow: var(--standard-shadow);
+      }
+
+      // Indicator pointer.
+
+      //       &::before {
+      //          content: "";
+      //          position: absolute;
+      //          z-index: 2;
+      //          top: -0.5em; // 8px / 16px
+      //          left: 4.375em; // 62px / 16px;
+      //          width: 1em;
+      //          height: 0.5em;
+      //          background: url("../img/sprite.svg") no-repeat -12em 0;
+      //          background-size: 13em 2em; // 208px / 16px + 32px / 16px
+      //
+      //          [dir="rtl"] & {
+      //             right: 4.375em; // 62px / 16px;
+      //             left: auto;
+      //          }
+      //       }
+      .dropdown-menu {
+         display: block;
+         background: inherit;
+         position: static;
+         //padding-top: 2em;
+         //border-bottom: 2px solid var(--clr-text);
+      }
+
+      .dropdown-toggle {
+         border-bottom: 2px solid var(--clr-text);
+      }
+
+      [role="menuitem"] {
+         padding: .5em 1em;
+      }
+
+   }
+
+   .txp-nav>ul>li {
+      //float: none;
+      //       border: 0;
+      //       //border-bottom: 1px solid hsl(0 0% 0% / 0.2);
+      //
+      //       &:first-child {
+      //          border-left: 0;
+      //       }
+
+      //       >a,
+      //       >a.dropdown-toggle {
+      //          padding: 0 1em;
+      //
+      //          [dir="rtl"] & {
+      //             padding: 0 1em;
+      //          }
+      //       }
+      //
+      //       a.dropdown-toggle::after {
+      //          top: 1.25em;
+      //          right: 1em;
+      //
+      //          [dir="rtl"] & {
+      //             right: auto;
+      //             left: 1em;
+      //          }
+      //       }
+   }
+
+   /**
+     * Secondary-level navigation menu items (submenus).
+     */
+
+   .dropdown-menu {
+
+      //       position: static;
+      //       min-width: 0;
+      //       border: 0;
+      //
+      //       @if setup.$border-radius >0 {
+      //          border-radius: 0;
+      //       }
+      //
+      //       @if not setup.$flat-theme {
+      //          box-shadow: none;
+      //       }
+      //
+      a {
+         //position: absolute;
+         //padding: 0.5em 1em;
+         // padding-inline-start: 2em;
+         //white-space: normal;
+      }
+
+      //
+      //       // Remove indicator pointer.
+      //
+      //       &::before {
+      //          display: none;
+      //       }
+   }
+
+   /**
+     * Collapse 2 column form fields to 1 column (remove flexbox).
+     */
+
+   .txp-edit,
+   .txp-tabs-vertical-group {
+      .txp-form-field:not(.txp-form-field-textarea) {
+         display: block;
+      }
+   }
+
+   /**
+     * Remove forced 'shim' alignments.
+     */
+
+   .txp-form-field-shim {
+      margin-inline-start: 0;
+   }
+
+   /**
+     * Adjust centre alignment of twisties.
+     */
+
+   //    h3.txp-summary a::after {
+   //       top: 0.75em; // 12px / 16px
+   //    }
+   //
+   //    h3.txp-summary.expanded a::after {
+   //       top: 0.875em; // 14px / 16px
+   //    }
+
+   /**
+     * Label/value one-column layouts within panes.
+     *
+     * Collapsed from two-column format on desktop layout (remove flexbox).
+     */
+
+   .txp-edit,
+   .txp-tabs-vertical-group {
+
+      .txp-form-field-label,
+      .txp-form-field-value {
+         flex: none;
+         min-height: inherit;
+      }
+   }
+
+   /**
+     * Remove inline alignment margin values when collapsed.
+     */
+
+   .txp-form-field-value {
+
+      input,
+      select,
+      // This is an optional jQuery UI widget (not used in core layouts).
+      .jquery-ui-controlgroup {
+         margin: 0;
+      }
+   }
+
+   /**
+     * Prevent over-expansion of contents.
+     */
+
+   .inline-file-uploader-actions {
+      display: block;
+   }
+
+   [type="file"] {
+      width: 100%;
+   }
+
+   /**
+     * Collapse progress meters responsively.
+     */
+
+   .progress-meter {
+      ol {
+         display: block;
+         margin-bottom: 1em;
+         text-align: start;
+      }
+
+      li {
+         display: block;
+         margin: 0;
+         float: none;
+
+         &::after {
+            display: none;
+         }
+      }
+   }
+
+   /**
+     * Collapse jQuery UI tabs responsively.
+     */
+
+   .ui-tabs:not(.ui-tabs-vertical) .ui-tabs-nav {
+      height: auto;
+      border-bottom: 1px solid var(--clr-brdr-lite);
+
+      li {
+         display: block;
+         height: auto;
+         border: 1px solid var(--clr-brdr-lite);
+         border-bottom: 1px solid transparent;
+
+         @if not setup.$flat-theme {
+            box-shadow: none;
+         }
+
+         &.ui-tabs-active {
+            margin-bottom: 0;
+            padding-bottom: 0;
+         }
+      }
+   }
+
+   /**
+     * Remove top border from jQuery UI tabs panel.
+     */
+
+   .ui-tabs:not(.ui-tabs-vertical) .ui-tabs-panel {
+      border-top-width: 0;
+   }
+
+   /**
+     * Remove float from inline the action links.
+     */
+
+   .txp-actions-inline,
+   .txp-edit .txp-actions-inline,
+   [dir="rtl"] .txp-actions-inline,
+   [dir="rtl"] .txp-edit .txp-actions-inline {
+      position: static;
+      margin-top: 0;
+      float: none;
+   }
+
+   /**
+     * Reset font size/weight/colour for elements in write -> main content area.
+     */
+
+   #main_content .text {
+
+      input,
+      textarea,
+      .title input {
+         font-size: 1rem;
+      }
+   }
+
+   .txp-save-zone {
+      padding: 0.25em 1em;
+   }
+   table {
+      font-size: 10px;
+   }
+   [data-col="id"] a::after {
+      margin-top: .25em;
+   }
+
+   th, td {
+      padding: 0 .25em;
+   }
+
+   td {
+     // vertical-align: text-top;
+   }
+   /**
+      Interesting approach for large mobile tables. Maybe useful for Articles & Images lists?
+     * https://css-tricks.com/responsive-data-tables/
+     */
+
+
+//    // Force table to not be like tables anymore */
+//    table,
+//    thead,
+//    tbody,
+//    th,
+//    td,
+//    tr {
+//       display: block;
+//    }
+//
+//    // Hide table headers (but not display: none;, for accessibility) */
+//    thead tr {
+//       position: absolute;
+//       top: -9999px;
+//       left: -9999px;
+//    }
+//
+//    tr {
+//       border-bottom: 2px solid var(--clr-text);
+//    }
+//
+//    th {}
+//
+//    td {
+//
+//       // Behave  like a "row" */
+//       //border: none;
+//       //border-bottom: 1px solid #eee;
+//       //position: relative;
+//       // padding-left: 4ch;
+//       &.txp-list-col-multi-edit {
+//          //width: auto;
+//          //margin-left: - 1.5em;
+//       }
+//
+//    }
+//
+//    td:before {
+//       // Now like a table header */
+//       position: absolute;
+//       // Top/left values mimic padding */
+//       top: .5em;
+//       left: .5em;
+//       width: 20ch;
+//       padding-right: 1em;
+//       white-space: nowrap;
+//       font-weight: 700;
+//    }
+//
+//    // Label the data
+//    td:nth-of-type(1):before {
+//       content: "First Name";
+//    }
+//
+//    td:nth-of-type(2):before {
+//       content: "Last Name";
+//    }
+//
+//    td:nth-of-type(3):before {
+//       content: "Job Title";
+//    }
+//
+//    td:nth-of-type(4):before {
+//       content: "Favorite Color";
+//    }
+//
+//    td:nth-of-type(5):before {
+//       content: "Wars of Trek?";
+//    }
+//
+//    td:nth-of-type(6):before {
+//       content: "Secret Alias";
+//    }
+//
+//    td:nth-of-type(7):before {
+//       content: "Date of Birth";
+//    }
+//
+//    td:nth-of-type(8):before {
+//       content: "Dream Vacation City";
+//    }
+//
+//    td:nth-of-type(9):before {
+//       content: "GPA";
+//    }
+//
+//    td:nth-of-type(10):before {
+//       content: "Arbitrary Data";
+//    }
+
+}

@@ -1,0 +1,291 @@
+@use "../setup";
+
+/* Messages
+   ========================================================================== */
+
+/**
+ * Alert labels.
+ *
+ * Example HTML:
+ *
+ * <span class="success">
+ * <span class="error">
+ * <strong class="success">
+ * <strong class="error">
+ */
+
+li.success {
+   background: var(--clr-success-bkgd);
+   //color: var(--clr-text-enforced-white);
+}
+
+.success:not(li) {
+   color: var(--clr-success-text);
+}
+
+li.warning {
+   background: var(--clr-warning-bkgd);
+}
+
+.warning:not(li) {
+   color: var(--clr-warning-text);
+}
+
+li.error {
+   background: var(--clr-error-bkgd);
+}
+
+.error:not(li) {
+   color: var(--clr-error-text);
+}
+
+li.information {
+   background: var(--clr-info-bkgd);
+}
+
+.information:not(li) {
+   color: var(--clr-info-text);
+}
+
+/**
+ * Highlight background.
+ *
+ * Example HTML:
+ *
+ * <table>
+ *     <tr>
+ *         <td class="highlight></td>
+ *         <td></td>
+ *     </tr>
+ * </table>
+ */
+
+.highlight {
+   background: var(--clr-hilite-box);
+}
+
+/**
+ * Alert boxes.
+ *
+ * Example HTML:
+ *
+ * <p class="alert-block success">
+ * <p class="alert-block error">
+ */
+
+.alert-block {
+   padding: 0.3076923em 0.6153846em; // 4px / 13px + 8px / 13px
+   clear: both;
+  // border: 1px solid;
+
+   @if setup.$border-radius >0 {
+      border-radius: setup.$border-radius;
+   }
+
+   &.success {
+      //border-color: var(--clr-success-brdr);
+     // background: var(--clr-success-bkgd);
+      color: var(--clr-success-brdr);
+   }
+
+   &.warning {
+      //border-color: var(--clr-warning-brdr);
+      //background: var(--clr-warning-bkgd);
+      color: var(--clr-warning-brdr);
+   }
+
+   &.error {
+      //border-color: var(--clr-error-brdr);
+      //background: var(--clr-error-bkgd);
+      color: var(--clr-error-brdr);
+   }
+
+   &.information {
+      //border-color: var(--clr-info-brdr);
+      //background: var(--clr-info-bkgd);
+      color: var(--clr-info-brdr);
+   }
+}
+
+/**
+ * Alert pills.
+ *
+ * Example HTML:
+ *
+ * <span class="alert-block alert-pill warning">
+ */
+
+.alert-pill {
+   display: inline-block;
+   padding: 0 0.33em;
+   font-weight: 400;
+}
+
+/**
+ * System messages.
+ *
+ * Example HTML:
+ *
+ * <div id="messagepane">
+ *     <span class="messageflash error" role="alert" aria-live="assertive">
+ *         <span class="ui-icon ui-icon-alert"></span>
+ *         Username not found.
+ *         <a class="close"><span class="ui-icon ui-icon-close">Close</span></a>
+ *     </span>
+ * </div>
+ */
+
+#messagepane {
+   position: fixed;
+   z-index: 1000;
+   right: 0;
+   top: var(--header-height);
+   width: calc(26ch + 4%);
+
+
+   //bottom: 0;
+   //left: 4%;
+   .messageflash {
+      min-height: var(--header-height);
+      display: block;
+      position: relative;
+      box-sizing: border-box;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 1em;
+      padding-right: 2em;
+      padding-bottom: 2em;
+
+      @if setup.$border-radius >0 {
+         border-radius: setup.$border-radius setup.$border-radius 0 0;
+      }
+
+      overflow-wrap: break-word;
+      color: var(--clr-text-inversed);
+
+      @if not setup.$flat-theme {
+         box-shadow: var(--standard-shadow);
+      }
+
+      text-align: left;
+
+      &.success {
+         background: var(--clr-success-bkgd);
+         color: var(--clr-success-text);
+      }
+
+      &.warning {
+         background: var(--clr-warning-bkgd);
+         color: var(--clr-warning-text);
+      }
+
+      &.error {
+         background: var(--clr-error-bkgd);
+         color: var(--clr-error-text);
+      }
+
+      > span {
+         display: block;
+         margin-top: -.5em;
+         margin-bottom: 1em;
+      }
+   }
+
+   a {
+      color: var(--clr-text-inversed);
+   }
+
+   code {
+      border-color: hsl(0 0% 100% / 0.66);
+      background: transparent;
+   }
+}
+
+@include setup.dark-mode {
+   #messagepane .messageflash {
+      border: 1px solid var(--clr-brdr-x-dark);
+      border-bottom: 0;
+
+      &.success {
+         background: var(--clr-success-bkgd);
+         color: var(--clr-success-text);
+      }
+
+      &.warning {
+         background: var(--clr-warning-bkgd);
+         color: var(--clr-warning-text);
+      }
+
+      &.error {
+         background: var(--clr-error-bkgd);
+         color: var(--clr-error-text);
+      }
+   }
+}
+
+/*
+ * System message close icon.
+ */
+
+.close {
+   position: absolute;
+   right: - .5em;
+   top: 0.5em;
+   width: 2.5384615em;
+   //border-left: 1px solid hsl(0 0% 100% / 0.66);
+
+   span {
+      // position: absolute;
+      // top: 50%;
+      //right: 0.6923077em; // 9px / 13px
+      //margin-top: -8px;
+      opacity: 0.66;
+
+      &:hover {
+         opacity: 1;
+      }
+   }
+}
+
+@include setup.dark-mode {
+   .close {
+      border-color: hsl(0 0% 0% / 0.4);
+
+      span {
+         opacity: 0.75;
+
+         &:hover {
+            opacity: 1;
+         }
+      }
+   }
+}
+
+/*
+ * System message flipped layout for RTL languages.
+ */
+
+[dir="rtl"] #messagepane .messageflash {
+   padding: 0.5384615em 0.75em 0.5384615em 3.5384615em;
+   text-align: right;
+}
+
+[dir="rtl"] .close {
+   right: auto;
+   left: 0;
+   border-right: 1px solid hsl(0 0% 100% / 0.66);
+   border-left: 0;
+
+   span {
+      right: auto;
+      left: 0.6923077em; // 9px / 13px
+   }
+}
+
+/*
+ * Flash the alert message using CSS animation.
+ */
+
+#messagepane .messageflash {
+   animation: messageflash 1s;
+}

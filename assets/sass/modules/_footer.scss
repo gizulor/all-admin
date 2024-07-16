@@ -1,0 +1,28 @@
+@use "../setup";
+
+/* Footer
+   ========================================================================== */
+
+/**
+ * Footer content area.
+ *
+ * Example HTML:
+ *
+ * <body>
+ *     <header class="txp-header"></header>
+ *     <main class="txp-body"></main>
+ *     <footer class="txp-footer">
+ *         Content
+ *     </footer>
+ * </body>
+ */
+
+.txp-footer {
+    display: flex;
+    margin-top: var(--header-height);
+    //justify-content: flex-end;
+
+    // > * {
+    //     margin-inline-start: 1rem;
+    // }
+}

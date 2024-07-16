@@ -1,0 +1,353 @@
+@use "../setup";
+
+/* Navigation
+   ========================================================================== */
+
+/**
+ * Hide the navigation menu toggle button on desktop layout.
+ *
+ * Example HTML:
+ *
+ * <button class="txp-nav-toggle">
+ */
+
+button.txp-nav-toggle {
+    display: none;
+}
+
+/**
+ * Base styling for the navigation menu.
+ *
+ * Example HTML:
+ *
+ * <nav class="txp-nav">
+ */
+
+.txp-nav {
+    flex: none;
+    margin: 0;
+    list-style: none;
+    margin-top: .33em;
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    > ul {
+
+        display: flex;
+    }
+
+    a {
+        color: var(--clr-text-btn);
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}
+
+/**
+ * Primary-level navigation menu items (dropdown toggles).
+ *
+ * Example HTML:
+ *
+ * <nav class="txp-nav">
+ *     <ul class="data-dropdown">
+ *         <li class="dropdown selected">
+ *             <a class="dropdown-toggle">
+ *                 Content
+ *             </a>
+ *             <ul class="dropdown-menu">
+ *                 <li><a></a></li>
+ *                 <li class="selected"><a></a></li>
+ *                 <li><a></a></li>
+ *             </ul>
+ *         </li>
+ *         <li class="dropdown">
+ *             <a class="dropdown-toggle">
+ *                 Presentation
+ *             </a>
+ *             <ul class="dropdown-menu">
+ *                 <li><a></a></li>
+ *                 <li><a></a></li>
+ *                 <li><a></a></li>
+ *             </ul>
+ *         </li>
+ *         <li class="dropdown open">
+ *             <a class="dropdown-toggle">
+ *                 Admin
+ *             </a>
+ *             <ul class="dropdown-menu">
+ *                 <li><a></a></li>
+ *                 <li><a></a></li>
+ *                 <li><a></a></li>
+ *             </ul>
+ *         </li>
+ *         <li>
+ *             <a>
+ *                 Non-dropdown link
+ *             </a>
+ *         </li>
+ *     </ul>
+ * </nav>
+ */
+
+.txp-nav > ul > li {
+    display: block;
+    position: relative;
+   // border-inline-end: 1px solid var(--clr-accent-grad-to);
+    //background: var(--clr-bkgd-enforced-white);
+
+    // &:first-child {
+    //     border-inline-start: 1px solid var(--clr-accent-grad-to);
+    // }
+    > a {
+        display: block;
+        padding: 0 1em;
+        //color: var(--clr-text-btn);
+        //line-height: 2.6923077; // 35px / 13px
+        text-decoration: none;
+
+        &:hover {
+           // background: hsl(0 0% 100% / 0.25);
+        }
+        &:focus {
+           outline: none;
+        }
+    }
+
+    &.selected > a {
+        //background: hsl(0 0% 100% / 0.25);
+        font-weight: 700;
+        &:hover {
+           // background: hsl(0 0% 100% / 0.4);
+        }
+    }
+}
+
+/**
+ * Indicator symbols on closed dropdown toggle links.
+ */
+
+.txp-nav > ul > li > a.dropdown-toggle {
+    position: relative;
+    padding: 0 1em;
+    //padding-inline-end: 1.6153846em;
+
+//     &::after {
+//         @include setup.hide-text;
+//
+//         content: "\2193";
+//         display: block;
+//         position: absolute;
+//         z-index: 10;
+//         top: 1em;
+//         right: 0.5625em; // 9px / 16px
+//         width: 0;
+//         height: 0;
+//         border: solid transparent;
+//         border-width: 0.25em 0.25em 0;
+//         border-top-color: var(--clr-text-btn);
+//         opacity: 0.4;
+//         font-size: 16px;
+//     }
+//
+//     &:hover::after,
+//     &:active::after {
+//         opacity: 0.8;
+//     }
+}
+
+/**
+ * Indicator symbols in RTL languages.
+ */
+
+// [dir="rtl"] .txp-nav > ul > li > a.dropdown-toggle::after {
+//     right: auto;
+//     left: 0.5625em; // 9px / 16px
+// }
+
+/**
+ * Indicator symbols on open dropdown toggle links.
+ */
+
+// .txp-nav > ul > li.open > a.dropdown-toggle::after {
+//     content: "\2191";
+//
+//     // border: solid transparent;
+//     // border-width: 0 0.25em 0.25em;
+//     // border-bottom-color: var(--clr-text-btn);
+// }
+
+/**
+ * Secondary-level navigation menu items (dropdown menus).
+ *
+ * Example HTML:
+ *
+ * <nav class="txp-nav">
+ *     <ul class="data-dropdown">
+ *         <li class="dropdown selected">
+ *             <a class="dropdown-toggle">
+ *                 Content
+ *             </a>
+ *             <ul class="dropdown-menu">
+ *                 <li><a></a></li>
+ *                 <li><a></a></li>
+ *                 <li class="selected"><a></a></li>
+ *             </ul>
+ *         </li>
+ *         <li class="dropdown">
+ *             <a class="dropdown-toggle">
+ *                 Presentation
+ *             </a>
+ *             <ul class="dropdown-menu">
+ *                 <li><a></a></li>
+ *                 <li><a></a></li>
+ *                 <li><a></a></li>
+ *             </ul>
+ *         </li>
+ *         <li class="dropdown open">
+ *             <a class="dropdown-toggle">
+ *                 Admin
+ *             </a>
+ *             <ul class="dropdown-menu">
+ *                 <li><a></a></li>
+ *                 <li><a></a></li>
+ *                 <li><a></a></li>
+ *             </ul>
+ *         </li>
+ *         <li>
+ *             <a>
+ *                 Non-dropdown link
+ *             </a>
+ *         </li>
+ *     </ul>
+ * </nav>
+ */
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    z-index: 20000;
+    top: calc(var(--header-height) - 1em);
+    left: 0;
+    flex: none;
+    min-width: 12em;
+
+    @if setup.$border-radius > 0 {
+        border-radius: 0 setup.$border-radius setup.$border-radius;
+    }
+
+    background: var(--clr-bkgd-enforced-white);
+
+    @if not setup.$flat-theme {
+        border-color: var(--clr-brdr-lite);
+        border-top: 0;
+        box-shadow: var(--standard-shadow);
+    } @else {
+        border-color: var(--clr-brdr);
+    }
+
+    li {
+        @if setup.$border-radius > 0 {
+            &:first-child {
+                border-radius: 0 setup.$border-radius 0 0;
+            }
+
+            &:last-child {
+                border-radius: 0 0 setup.$border-radius setup.$border-radius;
+            }
+        }
+
+        &:hover {
+           // background: var(--clr-hilite-box);
+           a {
+              text-decoration: underline;
+
+           }
+        }
+
+        &.selected {
+           font-weight: 700;
+            //background: var(--clr-strong-hilite-box);
+        }
+        &:last-child {
+           margin-bottom: 2em;
+        }
+    }
+
+    a {
+        display: block;
+        padding: 0.5em 1em;
+        white-space: nowrap;
+    }
+
+    // Indicator pointer.
+
+    // &::before {
+    //     content: "";
+    //     position: absolute;
+    //     z-index: 2;
+    //     top: -0.5em; // 8px / 16px
+    //     left: 0.75em; // 12px / 16px;
+    //     width: 1em;
+    //     height: 0.5em;
+    //     background: url("../img/sprite.svg") no-repeat -12em 0;
+    //     background-size: 13em 2em; // 208px / 16px + 32px / 16px
+    //     font-size: 16px;
+    // }
+}
+
+/**
+ * Secondary-level navigation menu in RTL languages.
+ */
+
+[dir="rtl"] .dropdown-menu {
+    right: 0;
+    left: auto;
+
+    @if setup.$border-radius > 0 {
+        border-radius: setup.$border-radius 0;
+
+        li:first-child {
+            border-radius: setup.$border-radius 0 0;
+        }
+    }
+
+    // Indicator pointer.
+
+    &::before {
+        right: 0.75em; // 12px / 16px;
+        left: auto;
+    }
+}
+
+/**
+ * Show drop-down menu when toggle clicked.
+ *
+ * Example HTML:
+ *
+ * <li class="dropdown open">
+ *     <a class="dropdown-toggle">
+ *         Admin
+ *     </a>
+ *     <ul class="dropdown-menu">
+ *         <li><a></a></li>
+ *         <li><a></a></li>
+ *         <li><a></a></li>
+ *     </ul>
+ * </li>
+ */
+
+.open > .dropdown-menu {
+    display: block;
+}
+
+@include setup.dark-mode {
+.dropdown-menu {
+
+ background: var(--clr-bkgd-form);
+}
+
+}

@@ -1,0 +1,155 @@
+@use "../setup";
+
+/* Layout grid
+   ========================================================================== */
+
+/**
+ * Flexbox/grid container.
+ */
+
+.txp-layout {
+   display: grid;
+   gap: 0 4%;
+   grid-template-columns: repeat(12, 1fr);
+
+}
+
+
+/**
+ * Generate sizes all for grid column cells.
+ *
+ * Because this is desktop first, all cells span variations are defined
+ * initially (1 column full width, 2 column, 4 column). We will then
+ * adjust them at various breakpoints.
+ *
+ * Example HTML:
+ *
+ * <div class="txp-layout-1col"></div>
+ *
+ * <div class="txp-layout-2col">
+ * <div class="txp-layout-2col">
+ *
+ * <div class="txp-layout-3col">
+ * <div class="txp-layout-3col-2span">
+ *
+ * <div class="txp-layout-4col-3span"></div>
+ * <div class="txp-layout-4col"></div>
+ */
+
+.txp-layout-1col {
+   grid-column: span 12;
+}
+
+.txp-layout-3col {
+   grid-column: span 4;
+}
+
+.txp-layout-3col-2span {
+   grid-column: span 8;
+}
+
+.txp-layout-4col-3span {
+   grid-column: span 9;
+}
+
+.txp-layout-2col,
+.txp-layout-4col-2span {
+   grid-column: span 6;
+}
+
+.txp-layout-4col,
+.txp-layout-4col-alt {
+   grid-column: span 3;
+}
+
+.txp-layout-cell-row {
+   display: flex;
+   align-items: flex-end;
+   justify-content: space-between;
+}
+
+/**
+ * Text columns (fixed proportion cell).
+ *
+ * Example HTML:
+ *
+ * <div class="txp-layout-textbox">
+ */
+
+.txp-layout-textbox {
+   max-width: setup.$text-column;
+}
+
+/* Inline grids
+   ========================================================================== */
+
+/**
+ * Inline grid type layouts.
+ *
+ * You should define a specific width for each .txp-grid-cell, either as a class
+ * attribute or style attribute, otherwise the cell width stretches to the
+ * content within it.
+ *
+ * Example HTML:
+ *
+ * <div class="txp-grid">
+ *     <div class="txp-grid-cell" style="width:30em;">
+ *         Content
+ *     </div>
+ *     <div class="txp-grid-cell" style="width:15em;">
+ *         Content
+ *     </div>
+ *     <div class="txp-grid-cell" style="width:15em;">
+ *         Content
+ *     </div>
+ * </div>
+ *
+ * <ul class="txp-grid">
+ *     <li>
+ *         Content
+ *     </li>
+ *     <li>
+ *         Content
+ *     </li>
+ *     <li>
+ *         Content
+ *     </li>
+ * </ul>
+ */
+
+.txp-grid {
+   display: grid;
+   gap: 4px;
+   grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+   margin: 0;
+   padding: 0;
+   clear: both;
+   list-style: none;
+}
+
+.txp-grid-cell {
+   position: relative;
+   box-sizing: border-box;
+   padding: 0 1em;
+   border: 1px solid var(--clr-brdr);
+}
+
+.txp-grid-cell-2span {
+   grid-column: span 2;
+}
+
+.txp-grid-cell-3span {
+   grid-column: span 3;
+}
+
+.txp-grid-multi-edit {
+   position: absolute;
+   z-index: 2;
+   top: 1px;
+   left: 1px;
+   padding: 3px 6px;
+   border: 1px solid var(--clr-brdr-lite);
+   border-top: 0;
+   border-left: 0;
+   background-color: hsl(0 0% 100% / 0.5);
+}

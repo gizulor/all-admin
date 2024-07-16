@@ -1,0 +1,99 @@
+@use "../setup";
+
+/* Embedded content
+   ========================================================================== */
+
+/**
+ * Make embedded elements responsive.
+ */
+
+img,
+video {
+    max-width: 100%;
+    height: auto;
+}
+
+/**
+ * Images.
+ *
+ * 1. Remove the gap between images and the bottom of their containers.
+ *
+ * Image alignment (compatible with Textile markup syntax).
+ *
+ * Example HTML:
+ *
+ * <img class="align-left">
+ * <img class="align-right">
+ * <img class="align-center">
+ */
+
+img {
+    vertical-align: middle; /* 1 */
+
+    &.align-left {
+        margin: 1em;
+        margin-inline-start: 0;
+        float: left; // TODO: use CSS Text Module Level 3 `start` value when browser support is widespread.
+    }
+
+    &.align-right {
+        margin: 1em;
+        margin-inline-end: 0;
+        float: right; // TODO: use CSS Text Module Level 3 `end` value when browser support is widespread.
+    }
+
+    &.align-center {
+        display: block;
+        margin: 1em auto;
+    }
+}
+
+/**
+ * Swap image alignment right/left positions in RTL languages.
+ */
+
+[dir="rtl"] img {
+    &.align-left {
+        float: right;
+    }
+
+    &.align-right {
+        float: left;
+    }
+}
+
+/**
+ * Content images and content images with links.
+ *
+ * Example HTML:
+ *
+ * <a>
+ *     <img class="content-image">
+ * </a>
+ */
+
+.content-image {
+    border: solid 1px var(--clr-brdr);
+    background: var(--clr-bkgd);
+
+    a & {
+        border-color: var(--clr-a);
+    }
+
+    a:hover & {
+        border-color: var(--clr-a-interact);
+    }
+
+    a:focus & {
+        border-color: var(--clr-focus);
+    }
+}
+
+/**
+ * Limit vertical height of fullsize images.
+ */
+
+.fullsize-image .content-image {
+    max-height: 85vh;
+    object-fit: contain;
+}

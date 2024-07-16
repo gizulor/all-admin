@@ -1,0 +1,102 @@
+@use "../setup";
+
+/* Links
+   ========================================================================== */
+
+/**
+ * 1. Remove default underline style from non-hover state links.
+ * 2. Interrupt the decoration line to let the shape of the text show through
+ *    in supported browsers.
+ * 3. Remove tap delay in modern browsers.
+ * 4. Hide `.busy` class links when processing AJAX.
+ */
+
+a {
+    color: var(--clr-a);
+    text-decoration: none; /* 1 */
+    text-decoration-skip-ink: auto; /* 2 */
+    touch-action: manipulation; /* 3 */
+
+    &:hover,
+    &:active {
+        color: var(--clr-a-interact);
+        text-decoration: underline;
+    }
+
+    &:focus {
+        outline: thin solid var(--clr-focus);
+    }
+
+    &.busy {
+        /* 4 */
+        visibility: hidden;
+    }
+}
+
+/**
+ * Additional styling for popup help links.
+ *
+ * Example HTML:
+ *
+ * <a class="pophelp"><span class="ui-icon ui-icon-help">Help</span></a>
+ */
+
+.pophelp,
+.pophelpsubtle {
+    display: inline-block;
+
+    &:focus {
+        outline: 0;
+    }
+}
+
+.no-ui-button [rel="help"]:focus {
+    outline: 0;
+}
+
+/**
+ * Additional styling for popup help links in table headers.
+ */
+
+.txp-list thead th a.pophelp {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+/**
+ * Reduce risk of render glitches in links on RTL languages.
+ */
+
+[dir="rtl"] a {
+    unicode-bidi: embed;
+}
+
+/**
+ * Visually hide unfocussed/inactive ‘skip links’.
+ *
+ * Example HTML:
+ *
+ * <a class="txp-skip-link">
+ */
+
+.txp-skip-link {
+    position: absolute;
+    z-index: 1001;
+    top: 0;
+    left: 0;
+    padding: 0.25em 0.5em;
+    transform: translateY(-5em);
+    transition: transform 0.2s ease-in-out;
+    background-color: var(--clr-bkgd-box);
+
+    &:focus,
+    &:active {
+        transform: translateY(0);
+    }
+}
+
+[dir="rtl"] .txp-skip-link {
+    right: 1px;
+    left: auto;
+}

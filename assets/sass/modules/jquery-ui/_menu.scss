@@ -1,0 +1,193 @@
+@use "../../setup";
+
+/* Menu
+   ========================================================================== */
+
+/**
+ * jQuery UI Menu.
+ *
+ * Menus are vertical format only. Horizontal format menus are not provided by
+ * jQuery UI.
+ *
+ * Some classes and HTML elements generally added via JavaScript, more info -
+ * https://jqueryui.com/menu/
+ *
+ * 1. Correct font size not being inherited in all browsers.
+ *
+ * Example HTML:
+ *
+ * <ul class="ui-menu">
+ *     <li class="ui-state-disabled ui-menu-item">
+ *         <a>Item 1 (disabled)</a>
+ *     </li>
+ *     <li class="ui-menu-item">
+ *         <a>Item 2</a>
+ *     </li>
+ *     <li class="ui-menu-item">
+ *         <a>
+ *             <span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span>
+ *             Item 3
+ *         </a>
+ *         <ul class="ui-menu">
+ *             <li class="ui-menu-item">
+ *                 <a>Item 3 subitem 1</a>
+ *             </li>
+ *             <li class="ui-menu-item">
+ *                 <a>Item 3 subitem 2</a>
+ *             </li>
+ *         </ul>
+ *     </li>
+ *     <li class="ui-menu-item">
+ *         <a>
+ *             <span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span>
+ *             Item 4
+ *         </a>
+ *         <ul class="ui-menu">
+ *             <li class="ui-menu-item">
+ *                 <span class="ui-menu-icon ui-icon ui-icon-caret-1-e"></span>
+ *                 <a>Item 4 subitem 1</a>
+ *                 <ul class="ui-menu">
+ *                     <li class="ui-menu-item">
+ *                         <a>Item 4 subitem 1 subsubitem 1</a>
+ *                     </li>
+ *                     <li class="ui-menu-item">
+ *                         <a>Item 4 subitem 1 subsubitem 2</a>
+ *                     </li>
+ *                 </ul>
+ *             </li>
+ *             <li class="ui-menu-item">
+ *                 <a>Item 3 subitem 2</a>
+ *             </li>
+ *         </ul>
+ *     </li>
+ * </ul>
+ */
+
+.ui-menu {
+    display: block;
+    margin: 0;
+    padding: 0;
+
+    @if not setup.$flat-theme {
+        border-color: var(--clr-brdr-lite);
+    }
+
+    outline: 0;
+    list-style: none;
+    font-size: 1rem; /* 1 */
+    line-height: setup.$base-line-height;
+
+    @if not setup.$flat-theme {
+        box-shadow: var(--standard-shadow);
+    }
+
+    .ui-menu {
+        position: absolute;
+    }
+
+    .ui-menu-item {
+        display: block;
+        margin: 0;
+        cursor: pointer;
+
+        a {
+            color: var(--clr-text);
+            text-decoration: none;
+        }
+
+        label {
+            display: block;
+            margin: -0.3076923em -0.6153846em; // 4px / 13px + 8px / 13px
+            padding: 0.3076923em 0.6153846em; // 4px / 13px + 8px / 13px
+            padding-inline-start: 2.5em;
+            cursor: pointer;
+
+            [type="checkbox"],
+            [type="radio"] {
+                position: absolute;
+                bottom: initial;
+                left: 0.3076923em;
+            }
+        }
+    }
+
+    .ui-menu-item-wrapper {
+        position: relative;
+        padding: 0.3076923em 0.6153846em; // 4px / 13px + 8px / 13px
+    }
+
+    .ui-menu-divider {
+        height: 0;
+        margin: 0.3076923em 0; // 4px / 13px
+        border-width: 1px 0 0;
+        font-size: 0;
+        line-height: 0;
+    }
+
+    .ui-state-focus,
+    .ui-state-active {
+        background-color: transparent;
+        text-decoration: underline;
+    }
+
+    // left-aligned
+
+    .ui-icon {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0.3076923em;
+        margin: auto 0;
+    }
+
+    // right-aligned
+
+    .ui-menu-icon {
+        right: 0;
+        left: auto;
+    }
+}
+
+ // @include setup.dark-mode {
+ //   background-color: var(--clr-bkgd-enforced-white);
+ // }
+
+/**
+ * Allow additional icons in menu items.
+ */
+
+.ui-menu-icons {
+    position: relative;
+
+    .ui-menu-item-wrapper {
+        padding-left: 2em;
+    }
+}
+
+/**
+ * Menu RTL support.
+ */
+
+[dir="rtl"] .ui-menu {
+    .ui-menu-item label {
+        [type="checkbox"],
+        [type="radio"] {
+            right: 0.3076923em;
+            left: auto;
+        }
+    }
+
+    // left-aligned (flipped to right)
+
+    .ui-icon {
+        right: 0.3076923em;
+        left: auto;
+    }
+
+    // right-aligned (flipped to left)
+
+    .ui-menu-icon {
+        right: auto;
+        left: 0;
+    }
+}

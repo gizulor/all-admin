@@ -1,0 +1,99 @@
+@use "../setup";
+
+/* Page-Article
+ ========================================================================== */
+
+#page-article {
+
+
+  @media screen and (min-width:1440px) {
+    #pane-text {
+      display: contents;
+    }
+
+    #main_content {
+      display: grid;
+      grid-gap: 2em;
+      grid-template-columns: 1fr 1fr; //repeat(auto-fit, minmax(64ch, 1fr));
+      align-items: start;
+      grid-template-areas:
+        'title title'
+        'authr authr'
+        'excrp bodyt'
+        'txtar bodyt'
+        'custf .';
+
+      >* {
+        margin: 0;
+      }
+    }
+
+    .title {
+      grid-area: title;
+    }
+
+    .author {
+      grid-area: authr;
+      margin-top: -1.5em;
+      // color: var(--)
+      //opacity: .66;
+    }
+
+    .excerpt {
+      grid-area: excrp;
+    }
+
+    .body {
+      grid-area: bodyt;
+    }
+
+    .glz-custom-textarea {
+      grid-area: txtar;
+
+    }
+
+    textarea {
+      min-height: 10.5em;
+    }
+
+    #txp-custom-field-group {
+      grid-area: custf;
+
+    }
+  }
+
+  // Allow for many 4-digit image ids
+  #article-image {
+    max-width: 100%;
+  }
+
+  @media screen and (min-width: 400px) {
+
+    .txp-container #txp-custom-field-group{
+      display: grid;
+      grid-gap: 2em;
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  .glz-cf {
+    display: grid;
+
+    .txp-form-field-label {}
+
+    .txp-form-field-instructions {
+      opacity: .66;
+      //color: var(--clr-a);
+      text-align: right;
+      font-size: 1rem;
+    }
+
+    .txp-form-field-value {
+      grid-column: span 2;
+    }
+
+    input {
+      width: 100%;
+    }
+  }
+}

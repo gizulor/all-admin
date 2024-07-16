@@ -1,0 +1,65 @@
+@use "../setup";
+
+/* Support for non-latin languages
+   ========================================================================== */
+
+/**
+ * Bidirectional (bidi) text support.
+ * See: https://www.w3.org/International/articles/inline-bidi-markup/#cssshim
+ */
+
+[dir="ltr"],
+[dir="rtl"] {
+    unicode-bidi: isolate;
+}
+
+bdo[dir="ltr"],
+bdo[dir="rtl"] {
+    unicode-bidi: isolate-override;
+}
+
+/**
+ * Preferred font for Japanese language.
+ */
+
+:lang(ja) {
+    font-family: "Hiragino Sans", "Hiragino Kaku Gothic Pro", "Meiryo UI",
+        sans-serif;
+    font-weight: 300;
+}
+
+/**
+ * Preferred font for Korean language.
+ */
+
+:lang(ko) {
+    font-family: GulimChe, Gulim, sans-serif;
+}
+
+/**
+ * Preferred font for simplified Chinese (PRC) language.
+ */
+
+:lang(zh-cn) {
+    font-family: "PingFang SC", SimHei, sans-serif;
+}
+
+/**
+ * Preferred font for traditional Chinese (Taiwan, Hong Kong) language.
+ */
+
+:lang(zh-tw) {
+    font-family: "PingFang TC", PMingLiU, sans-serif;
+}
+
+/**
+ * Suppress `text-decoration` in some RTL languages for better legibility.
+ */
+
+[lang|="ar"],
+[lang|="fa"],
+[lang|="ur"] {
+    a:hover {
+        text-decoration: none;
+    }
+}

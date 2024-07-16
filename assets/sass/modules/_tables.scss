@@ -1,0 +1,282 @@
+@use "../setup";
+
+/* Tables
+   ========================================================================== */
+
+/**
+ * 1. Make sure list tables clear any preceding grid cell floats.
+ * 2. Allow overflow scroll on tables.
+ *
+ * Example HTML:
+ *
+ * <div class="txp-listtables">
+ *     <table></table>
+ * </div>
+ */
+
+.txp-listtables {
+    clear: both; /* 1 */
+    overflow-x: auto; /* 2 */
+
+    &:focus {
+        outline: thin solid var(--clr-focus);
+    }
+}
+
+/**
+ * Consistent tables.
+ */
+
+table {
+    border-spacing: 0;
+    border-collapse: collapse;
+    //background-color: var(--clr-bkgd);
+}
+
+/**
+ * Styling of table captions.
+ */
+
+caption {
+    margin-bottom: 0.5em;
+    text-align: start;
+}
+
+/**
+ * Table row borders.
+ */
+
+tr {
+}
+
+thead th {
+    //background-color: var(--clr-grad-from);
+    border-bottom: 2px solid var(--clr-text);
+}
+
+@include setup.dark-mode {
+    tr {
+        border-color: var(--clr-brdr-x-lite);
+    }
+
+    thead th {
+        background-color: var(--clr-grad-to);
+        color: var(--clr-text-promoted);
+    }
+}
+
+/**
+ * Make table cells align centred and left by default.
+ */
+
+th,
+td {
+    padding: 0.3846154em 1em; // 5px / 13px + 13px
+    vertical-align: middle;
+    text-align: start;
+}
+
+/**
+ * Listing tables.
+ *
+ * Example HTML:
+ *
+ * <table class="txp-list">
+ *     <thead>
+ *         <tr>
+ *             <th class="multi-edit" scope="col"></th>
+ *             <th class="asc scope="col"><a></a></th>
+ *             <th scope="col"><a></a></th>
+ *         </tr>
+ *     </thead>
+ *     <tfoot>
+ *         <tr>
+ *             <td colspan="3"></td>
+ *         </tr>
+ *     </tfoot>
+ *     <tbody>
+ *         <tr>
+ *             <th class="multi-edit" scope="row"></th>
+ *             <td></td>
+ *             <td></td>
+ *         </tr>
+ *         <tr class="selected">
+ *             <th class="multi-edit" scope="row"></th>
+ *             <td></td>
+ *             <td></td>
+ *         </tr>
+ *     </tbody>
+ * </table>
+ */
+
+.txp-list,
+.txp-list--no-options {
+    width: 100%;
+
+    tbody {
+        tr {
+         border: 1px solid var(--clr-brdr-x-lite);
+         border-left: 0;
+         border-right: 0;
+            &:nth-child(even) {
+              //  background: var(--clr-bkgd-box);
+            }
+
+            &.selected {
+                background: var(--clr-selected);
+            }
+        }
+
+        th {
+            font-weight: 400;
+        }
+    }
+
+    thead th {
+        // @include setup.gradient-linear(
+        //     var(--clr-grad-from),
+        //     var(--clr-grad-to)
+        // );
+
+//         border-top: 1px solid var(--clr-brdr-lite);
+//         border-right: 1px solid var(--clr-brdr);
+//         border-bottom: 1px solid var(--clr-brdr-dark);
+//         border-left: 0;
+//
+//         &:first-child {
+//             border-left: 1px solid var(--clr-brdr);
+//         }
+
+        a {
+            display: block;
+            position: relative;
+            margin: -0.3846154em -1em; // improved click area
+            padding: 0.3846154em 1em; // 5px / 13px + 13px
+            color: var(--clr-text);
+
+            &:hover {
+                color: var(--clr-text);
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+@include setup.dark-mode {
+    .txp-list,
+    .txp-list--no-options {
+        thead th {
+            border-right-color: var(--clr-brdr-dark);
+            border-bottom-color: var(--clr-brdr-x-lite);
+
+            &:first-child {
+                border-left-color: var(--clr-brdr-x-lite);
+            }
+
+            &:last-child {
+                border-right-color: var(--clr-brdr-x-lite);
+            }
+
+            a {
+                color: var(--clr-text-promoted);
+
+                &:hover {
+                    color: var(--clr-text-promoted);
+                }
+            }
+        }
+        tbody {
+             tr {
+        //       border: 1px solid var(--clr-brdr-x-lite);
+        //       border-left: 0;
+        //       border-right: 0;
+        //
+                 &.selected {
+                     background: transparent;
+                     color: var(--yellow);
+                     a {
+                        color: inherit;
+                     }
+                 }
+             }
+
+         }
+    }
+}
+
+/**
+ * Backgrounds and indicator icons on currently active sortable `thead th`.
+ *
+ * Example HTML:
+ *
+ * <th class="asc scope="col"><a></a></th>
+ * <th class="desc scope="col"><a></a></th>
+ */
+
+.txp-list,
+.txp-list--no-options {
+    thead th {
+        &.asc,
+        &.desc {
+            // @include setup.gradient-linear(
+            //     var(--clr-grad-to),
+            //     var(--clr-grad-from)
+            // );
+//border: 1px solid red;
+            //filter: brightness(0.95);
+
+            a::after {
+                @include setup.hide-text;
+
+                display: block;
+                position: absolute;
+                z-index: 10;
+                top: 45%;
+                right: 0.3125em; // 5px / 16px
+                width: 0;
+                height: 0;
+                //opacity: 0.6;
+                font-size: 22px;
+
+                [dir="rtl"] & {
+                    right: auto;
+                    left: 0.3125em; // 5px / 16px
+                }
+            }
+
+            a:hover::after {
+                opacity: 1;
+            }
+        }
+
+        &.desc a::after {
+            content: "\2193";
+            border: solid transparent;
+            border-width: 0.25em 0.25em 0;
+            border-top-color: var(--clr-text);
+        }
+
+        &.asc a::after {
+            content: "\2191";
+            border: solid transparent;
+            border-width: 0 0.25em 0.25em;
+            border-bottom-color: var(--clr-text);
+        }
+    }
+}
+
+/**
+ * Consistent width for table multi-edit checkbox columns.
+ */
+
+.txp-list-col-multi-edit {
+    width: 13px;
+}
+
+/**
+ * Avoid wrapping of content in table '#ID' columns.
+ */
+
+.txp-list-col-id {
+    white-space: nowrap;
+}

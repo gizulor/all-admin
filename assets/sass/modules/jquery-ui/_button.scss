@@ -1,0 +1,173 @@
+@use "../../setup";
+
+/* Button
+   ========================================================================== */
+
+/**
+ * jQuery UI Button.
+ *
+ * Some classes and HTML elements generally added via JavaScript, more info -
+ * https://jqueryui.com/button/
+ *
+ * 1. The `overflow` property removes extra width.
+ * 2. Correct font size not being inherited in all browsers.
+ * 3. Remove iOS Safari default styling.
+ * 4. Improve usability and consistency of cursor style between image-type
+ *    `input` and others.
+ *
+ * Example HTML:
+ *
+ * <a class="ui-button ui-corner-all ui-widget">Button</a>
+ */
+
+.ui-button {
+   @include setup.gradient-linear(var(--clr-btn-grad-from),
+      var(--clr-btn-grad-to));
+
+   display: inline-block;
+   position: relative;
+   box-sizing: border-box;
+   margin: 0;
+   padding: 0.3076923em 0.6153846em; // 4px / 13px + 8px / 13px
+   overflow: visible;
+   /* 1 */
+   border: 1px solid var(--clr-btn-brdr);
+   background-clip: padding-box;
+   color: var(--clr-text-btn);
+   font-family: inherit;
+   font-size: 1rem;
+   /* 2 */
+   line-height: setup.$base-line-height;
+   vertical-align: baseline;
+   text-align: center;
+   appearance: none;
+   /* 3 */
+   cursor: pointer;
+   /* 4 */
+   user-select: none;
+
+   &:hover {
+      filter: brightness(1.05);
+      color: var(--clr-text-btn-hover);
+      text-decoration: none;
+   }
+
+   &:active {
+      filter: brightness(0.95);
+      color: var(--clr-text-btn-active);
+      text-decoration: none;
+
+      @if not setup.$flat-theme {
+         box-shadow: var(--inset-lolite);
+      }
+   }
+
+   &:focus {
+      border-color: var(--clr-focus);
+      outline: 0;
+      box-shadow: 0 0 0 1px var(--clr-focus-a50);
+      color: var(--clr-text-btn-active);
+   }
+}
+
+@include setup.dark-mode {
+   .ui-button {
+
+      filter: invert(100%);
+   }
+}
+
+/**
+ * Remove some styling from `a` links as buttons.
+ */
+
+a.ui-button {
+   color: var(--clr-text-btn);
+   text-decoration: none;
+}
+
+/**
+ * Focus styling for buttons.
+ *
+ * 1. `!important` required to override specificity.
+ */
+
+.ui-button.ui-state-focus {
+   border-color: var(--clr-focus) !important;
+   /* 1 */
+}
+
+/**
+ * Single-icon-only button.
+ *
+ * To make room for the icon, a width needs to be set here.
+ *
+ * Example HTML:
+ *
+ * <a class="ui-button ui-corner-all ui-widget ui-button-icon-only">
+ *     <span class="ui-button-icon ui-icon ui-icon-gear"></span>
+ *     <span class="ui-button-icon-space"> </span>
+ *     Button one icon, no text
+ * </a>
+ */
+
+.ui-button-icon-only {
+   box-sizing: border-box;
+   width: 2.1538462em; // 28px / 13px
+   text-indent: -9999px;
+   white-space: nowrap;
+}
+
+/**
+ * No icon support for input elements.
+ */
+
+input.ui-button.ui-button-icon-only {
+   text-indent: 0;
+}
+
+@if setup.$border-radius >0 {
+   .ui-button.ui-corner-all {
+      border-radius: setup.$border-radius;
+   }
+
+   .ui-button.ui-corner-right {
+      border-radius: 0 setup.$border-radius setup.$border-radius 0;
+
+      [dir="rtl"] & {
+         border-radius: setup.$border-radius 0 0 setup.$border-radius;
+      }
+   }
+
+   .ui-button.ui-corner-left {
+      border-radius: setup.$border-radius 0 0 setup.$border-radius;
+
+      [dir="rtl"] & {
+         border-radius: 0 setup.$border-radius setup.$border-radius 0;
+      }
+   }
+}
+
+/**
+ * Button icon element(s).
+ */
+
+.ui-button-icon-only .ui-icon {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   margin-top: -8px;
+   margin-left: -8px;
+}
+
+.ui-button.ui-icon-notext .ui-icon {
+   padding: 0;
+   text-indent: -9999px;
+   white-space: nowrap;
+}
+
+input.ui-button.ui-icon-notext .ui-icon {
+   padding: 0.4em 1em;
+   text-indent: 0;
+   white-space: normal;
+}
