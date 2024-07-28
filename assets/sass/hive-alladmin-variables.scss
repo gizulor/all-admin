@@ -6,11 +6,11 @@
 /* stylelint-disable declaration-colon-space-after */
 
 :root {
+    --thumb-img-height: 120px;
     // font families
     --font-body: system-ui, -apple-system, "Segoe UI", Helvetica, Arial,
         sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     --font-code: Menlo, Consolas, Monaco, monospace;
-
     --yellow: hsl(48 ,100%, 50%);
     // text colours
     --clr-text: hsl(0 ,0%, 20%);

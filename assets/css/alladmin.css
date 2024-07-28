@@ -3,6 +3,7 @@
    ========================================================================== */
 /* stylelint-disable declaration-colon-space-after */
 :root {
+  --thumb-img-height: 120px;
   --font-body: system-ui, -apple-system, "Segoe UI", Helvetica, Arial,
       sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   --font-code: Menlo, Consolas, Monaco, monospace;
@@ -7900,7 +7901,7 @@ body.darkmode .ui-tabs .ui-tabs-nav li:hover {
     grid-gap: 2em;
     grid-template-columns: 1fr 1fr;
     align-items: start;
-    grid-template-areas: "title title" "authr authr" "excrp bodyt" "txtar bodyt" "custf .";
+    grid-template-areas: "title title" "authr authr" "excrp bodyt" "txta1 bodyt" ".     ." "custf .";
   }
   #page-article #main_content > * {
     margin: 0;
@@ -7918,8 +7919,11 @@ body.darkmode .ui-tabs .ui-tabs-nav li:hover {
   #page-article .body {
     grid-area: bodyt;
   }
-  #page-article .glz-custom-textarea {
-    grid-area: txtar;
+  #page-article .glz-custom-textarea textarea {
+    font-size: small;
+  }
+  #page-article .glz-custom-textarea:first-of-type {
+    grid-area: txta1;
   }
   #page-article textarea {
     min-height: 10.5em;
@@ -7927,16 +7931,44 @@ body.darkmode .ui-tabs .ui-tabs-nav li:hover {
   #page-article #txp-custom-field-group {
     grid-area: custf;
   }
+  #page-article .glz-custom-checkbox .txp-form-field-value,
+  #page-article .glz-custom-radio .txp-form-field-value {
+    -moz-column-count: 2;
+         column-count: 2;
+    -moz-column-gap: 1em;
+         column-gap: 1em;
+  }
 }
 #page-article #article-image {
   max-width: 100%;
 }
+#page-article #article-file-container {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-gap: 2em 4em;
+}
+#page-article #article-file-container p {
+  background: var(--clr-bkgd-box);
+}
+#page-article #article-file-container img {
+  height: var(--thumb-img-height);
+}
 @media screen and (min-width: 400px) {
-  #page-article .txp-container #txp-custom-field-group {
-    display: grid;
-    grid-gap: 2em;
-    grid-template-columns: 1fr 1fr;
+  #page-article .txp-container #article-file-container .txp-container #txp-custom-field-group {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-gap: 2em 4em;
   }
+}
+#page-article #txp-image-group-content {
+  display: flex;
+  flex-direction: column-reverse;
+}
+#page-article .bot_iu_image_container {
+  flex: auto;
+}
+#page-article .bot_iu_image_container > img {
+  height: var(--thumb-img-height);
 }
 #page-article .glz-cf {
   display: grid;
@@ -7951,6 +7983,9 @@ body.darkmode .ui-tabs .ui-tabs-nav li:hover {
 }
 #page-article .glz-cf input {
   width: 100%;
+}
+#page-article .glz-cf input[type=checkbox], #page-article .glz-cf input[type=radio] {
+  width: 1.5em;
 }
 
 /* Page-Image
@@ -7998,9 +8033,6 @@ body.darkmode .ui-tabs .ui-tabs-nav li:hover {
   grid-gap: 2em 4em;
   margin-top: 4em;
 }
-#page-image .txp-list tbody .txp-list-col-thumbnail {
-  width: 200px;
-}
 #page-image .txp-list tbody tr {
   display: grid;
   grid-template-areas: "check id cat" "image image image" "name name name" "author author author" "date date date" "build build build";
@@ -8039,13 +8071,12 @@ body.darkmode .ui-tabs .ui-tabs-nav li:hover {
 #page-image .txp-list-col-thumbnail {
   grid-area: image;
   opacity: 1;
+  background: var(--clr-bkgd-box);
   margin: 0.5em 0;
 }
 #page-image .txp-list-col-thumbnail img {
-  height: 120px;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
+  height: var(--thumb-img-height);
+  width: 100%;
   -o-object-fit: contain;
      object-fit: contain;
   -o-object-position: top left;
@@ -8059,6 +8090,15 @@ body.darkmode .ui-tabs .ui-tabs-nav li:hover {
 #page-image .txp-list-col-tag-build,
 #page-image .txp-list-col-thumbnail {
   font-size: 12px;
+}
+#page-image #thumbnail_alter_form:after {
+  content: "Thumbnail resizing is disabled.";
+  display: block;
+  margin-bottom: 1rem;
+  opacity: 0.5;
+}
+#page-image #thumbnail_alter_form > * {
+  display: none;
 }
 
 /*# sourceMappingURL=alladmin.css.map */

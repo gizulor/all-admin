@@ -7,17 +7,20 @@
 #page-image {
 
   thead {
-    .txp-list-col-id{
+    .txp-list-col-id {
       min-width: 16ch;
+
       a {
         display: inline-block;
       }
+
       &:before {
-       // position: absolute;
+        // position: absolute;
         content: 'Sort images by: ';
         //opacity: .5;
       }
     }
+
     // position: absolute;
     // z-index: 1;
     //background-color: var(--clr-text-enforced-white);
@@ -34,9 +37,11 @@
       // '. build build';
       // grid-gap: .5em 0;
     }
+
     th a:after {
       right: -0.15em;
     }
+
     // th {
     //   border: 0;
     //   padding: 0;
@@ -56,16 +61,19 @@
     td {
       padding: 0;
     }
+
     .txp-list-col-multi-edit {
       width: auto;
       font-weight: inherit;
+
       //min-width:
-        &:after {
-          content: 'Select all';
-          opacity: .5;
-          margin-left: .5em;
-        }
+      &:after {
+        content: 'Select all';
+        opacity: .5;
+        margin-left: .5em;
+      }
     }
+
     .txp-list-col-thumbnail {
       margin: 0;
     }
@@ -73,6 +81,7 @@
     .category {
       margin-left: 0;
     }
+
     .txp-list-col-tag-build {
       display: none;
     }
@@ -87,19 +96,19 @@
     margin-top: 4em;
 
     .txp-list-col-thumbnail {
-      width: 200px;
+      //width: max-content;
     }
 
     tr {
       display: grid;
 
       grid-template-areas:
-      'check id cat'
-      'image image image'
-      'name name name'
-      'author author author'
-      'date date date'
-      'build build build';
+        'check id cat'
+        'image image image'
+        'name name name'
+        'author author author'
+        'date date date'
+        'build build build';
 
       grid-template-columns: 1.5em max-content 1fr;
       //grid-template-rows: 2em 120px auto auto auto;
@@ -108,10 +117,11 @@
       border: 0;
       margin-bottom: var(--header-height);
 
-     >*  {
+      >* {
         padding: 0;
+
         &:not(.txp-list-col-thumbnail) {
-        opacity: .5;
+          opacity: .5;
 
         }
 
@@ -147,7 +157,7 @@
 
   .category {
     grid-area: cat;
-   margin-left: 1em;
+    margin-left: 1em;
     //margin-top: .5em;
     opacity: 1 !important;
   }
@@ -156,25 +166,38 @@
   .txp-list-col-thumbnail {
     grid-area: image;
     opacity: 1;
+    background: var(--clr-bkgd-box);
 
     img {
-      height: 120px;
-      width: max-content;
+      height: var(--thumb-img-height);
+      width: 100%;
       object-fit: contain;
-  object-position: top left;
+      object-position: top left;
       border: 0;
       background: transparent;
     }
 
     margin: .5em 0;
   }
-.txp-list-col-name,
-.name,
-.date,
-.txp-list-col-tag-build,
-.txp-list-col-thumbnail {
-  font-size: 12px;
-}
-  //@media screen and (min-width:1440px) {
 
+  .txp-list-col-name,
+  .name,
+  .date,
+  .txp-list-col-tag-build,
+  .txp-list-col-thumbnail {
+    font-size: 12px;
+  }
+
+  #thumbnail_alter_form {
+    &:after {
+      content: 'Thumbnail resizing is disabled.';
+      display: block;
+      margin-bottom: 1rem;
+      opacity: .5;
+    }
+
+    >* {
+      display: none;
+    }
+  }
 }
