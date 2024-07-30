@@ -8,24 +8,26 @@
 
   thead {
     .txp-list-col-id {
-      min-width: 16ch;
 
       a {
         display: inline-block;
       }
-
+      @media (min-width: setup.$break-small) {
+      min-width: 16ch;
       &:before {
         // position: absolute;
         content: 'Sort images by: ';
-        //opacity: .5;
+        font-weight: 400;
+        opacity: .5;
       }
+    }
     }
 
     // position: absolute;
     // z-index: 1;
     //background-color: var(--clr-text-enforced-white);
-    tr {
-      display: flex;
+    >tr {
+      display: inline-flex;
       // max-width: 120px;
       // grid-template-columns: 12ch 8ch 1fr;
       // grid-template-areas:
@@ -65,12 +67,14 @@
     .txp-list-col-multi-edit {
       width: auto;
       font-weight: inherit;
+      padding-left: 0;
 
-      //min-width:
-      &:after {
-        content: 'Select all';
-        opacity: .5;
-        margin-left: .5em;
+      @media (min-width: setup.$break-small) {
+        &:after {
+          content: 'Select all';
+          opacity: .5;
+          margin-left: .5em;
+        }
       }
     }
 
@@ -131,7 +135,6 @@
 
     }
 
-  }
 
   .txp-list-col-multi-edit {
     grid-area: check;
@@ -187,6 +190,8 @@
   .txp-list-col-thumbnail {
     font-size: 12px;
   }
+  }
+
 
   #thumbnail_alter_form {
     &:after {

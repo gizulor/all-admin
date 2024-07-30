@@ -22,7 +22,7 @@
         'excrp bodyt'
         'txta1 bodyt'
         '.     .'
-        'custf .';
+        'custf arimg';
 
       >* {
         margin: 0;
@@ -77,6 +77,9 @@
     }
   }
 
+#txp-image-group {
+  grid-area: arimg;
+}
   // Allow for many 4-digit image ids
   #article-image {
     max-width: 100%;
